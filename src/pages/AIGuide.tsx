@@ -17,7 +17,9 @@ import {
   Headphones,
   Volume2,
   Bot,
-  User
+  User,
+  Play,
+  ArrowRight
 } from "lucide-react";
 
 const chatHistory = [
@@ -141,6 +143,17 @@ const AIGuide = () => {
             Meet Rajpipla, your intelligent AI companion who knows every story, every secret, 
             and every detail about the palace. Ask anything in your preferred language!
           </p>
+          
+          <div className="flex gap-4 justify-center">
+            <Button variant="heritage" size="xl" className="group">
+              <Play className="w-5 h-5" />
+              Start AI Guide
+            </Button>
+            <Button variant="palace" size="xl">
+              <MessageCircle className="w-5 h-5" />
+              Ask a Question
+            </Button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

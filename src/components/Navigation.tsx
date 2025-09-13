@@ -7,7 +7,7 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "Virtual Tour", href: "/virtual-tour" },
   { name: "Digital Archive", href: "/archive" },
-  { name: "AR Experience", href: "/ar-experience" },
+  { name: "Audio Tour", href: "/audio-tour" },
   { name: "Visit", href: "/visit" },
   { name: "Community", href: "/community" },
   { name: "AI Guide", href: "/ai-guide" },
@@ -44,9 +44,6 @@ export const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button variant="heritage" size="sm">
-              Book Visit
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -78,9 +75,6 @@ export const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              <Button variant="heritage" size="sm" className="w-fit">
-                Book Visit
-              </Button>
             </div>
           </div>
         )}

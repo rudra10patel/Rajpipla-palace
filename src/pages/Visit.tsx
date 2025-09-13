@@ -27,71 +27,71 @@ const visitInfo = {
     winter: "9:30 AM - 5:30 PM (October - March)",
     closed: "Mondays (except holidays)"
   },
-  tickets: {
-    adult: "₹500",
-    student: "₹250",
-    foreign: "₹1000",
-    group: "₹400 per person (10+ people)"
+  entry: {
+    adult: "₹100",
+    student: "₹50",
+    child: "₹25 (under 12)",
+    senior: "₹50 (60+ years)"
   }
 };
 
 const nearbyHotels = [
   {
-    name: "Heritage Palace Resort",
-    category: "Luxury",
-    rating: 4.8,
-    price: "₹8,500/night",
-    distance: "0.2 km",
-    amenities: ["Pool", "Spa", "Restaurant", "WiFi"],
-    contact: "+91 98765 43210"
+    name: "Hotel Rajpipla Palace",
+    category: "Heritage",
+    rating: 4.5,
+    price: "₹3,500/night",
+    distance: "0.5 km",
+    amenities: ["Heritage Rooms", "Restaurant", "WiFi", "Parking"],
+    contact: "+91 2642 220001"
   },
   {
-    name: "Royal Garden Hotel",
+    name: "Narmada Hotel",
     category: "Premium",
-    rating: 4.6,
-    price: "₹5,200/night",
-    distance: "0.8 km",
-    amenities: ["Garden View", "Restaurant", "WiFi", "Parking"],
-    contact: "+91 98765 43211"
+    rating: 4.3,
+    price: "₹2,800/night",
+    distance: "1.0 km",
+    amenities: ["River View", "Restaurant", "WiFi", "AC Rooms"],
+    contact: "+91 2642 220002"
   },
   {
     name: "Rajpipla Guest House",
     category: "Budget",
-    rating: 4.2,
-    price: "₹2,100/night",
-    distance: "1.2 km",
-    amenities: ["Clean Rooms", "WiFi", "Local Cuisine"],
-    contact: "+91 98765 43212"
+    rating: 4.0,
+    price: "₹1,200/night",
+    distance: "1.5 km",
+    amenities: ["Clean Rooms", "WiFi", "Local Cuisine", "Parking"],
+    contact: "+91 2642 220003"
   }
 ];
 
 const guidedTours = [
   {
-    name: "Complete Palace Tour",
-    duration: "3 hours",
-    price: "₹1,500",
-    includes: ["All Rooms", "Gardens", "Museum", "Tea/Coffee"],
-    languages: ["English", "Hindi", "Gujarati"],
-    maxGroup: 15,
-    timing: ["10:00 AM", "2:00 PM"]
-  },
-  {
-    name: "Heritage Photography Tour",
-    duration: "4 hours",
-    price: "₹2,500",
-    includes: ["Photography Guide", "Best Spots", "Historical Context", "Digital Album"],
-    languages: ["English", "Hindi"],
-    maxGroup: 8,
-    timing: ["8:00 AM", "3:00 PM"]
-  },
-  {
-    name: "Royal Sunset Experience",
+    name: "Vijay Palace Heritage Tour",
     duration: "2 hours",
-    price: "₹1,800",
-    includes: ["Sunset Views", "Royal Tea", "Cultural Performance"],
+    price: "₹300",
+    includes: ["Palace History", "Architecture", "Museum", "Garden Walk"],
     languages: ["English", "Hindi", "Gujarati"],
     maxGroup: 20,
-    timing: ["4:30 PM"]
+    timing: ["10:00 AM", "2:00 PM", "4:00 PM"]
+  },
+  {
+    name: "Gohil Dynasty History Tour",
+    duration: "1.5 hours",
+    price: "₹250",
+    includes: ["Royal History", "Family Portraits", "Cultural Context", "Tea Service"],
+    languages: ["English", "Hindi", "Gujarati"],
+    maxGroup: 15,
+    timing: ["11:00 AM", "3:00 PM"]
+  },
+  {
+    name: "Architecture & Art Tour",
+    duration: "1 hour",
+    price: "₹200",
+    includes: ["Indo-Islamic Design", "Art Collections", "Photography Spots"],
+    languages: ["English", "Hindi"],
+    maxGroup: 12,
+    timing: ["9:00 AM", "1:00 PM", "5:00 PM"]
   }
 ];
 
@@ -99,25 +99,37 @@ const nearbyAttractions = [
   {
     name: "Shoolpaneshwar Wildlife Sanctuary",
     distance: "45 km",
-    description: "Rich biodiversity and wildlife spotting opportunities",
+    description: "Rich biodiversity and wildlife spotting opportunities near Rajpipla",
     category: "Nature"
   },
   {
     name: "Sardar Sarovar Dam",
     distance: "52 km",
-    description: "One of India's largest dams with spectacular views",
+    description: "One of India's largest dams with spectacular views and visitor center",
     category: "Engineering Marvel"
   },
   {
-    name: "Kevadia Colony",
+    name: "Statue of Unity",
     distance: "48 km",
-    description: "Tourist hub near Statue of Unity with multiple attractions",
-    category: "Tourism Hub"
+    description: "World's tallest statue of Sardar Vallabhbhai Patel with museum and attractions",
+    category: "Monument"
   },
   {
-    name: "River Narmada Cruise",
+    name: "River Narmada Ghat",
+    distance: "8 km",
+    description: "Sacred ghats on the holy Narmada river for spiritual experiences",
+    category: "Spiritual"
+  },
+  {
+    name: "Rajpipla Fort",
+    distance: "2 km",
+    description: "Historic fort ruins with panoramic views of the surrounding landscape",
+    category: "Heritage"
+  },
+  {
+    name: "Narmada River Cruise",
     distance: "15 km",
-    description: "Scenic boat rides on the holy Narmada river",
+    description: "Scenic boat rides on the holy Narmada river with nature views",
     category: "Recreation"
   }
 ];
@@ -135,49 +147,49 @@ const Visit = () => {
             Plan Your Visit
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Everything you need to know for an unforgettable visit to Rajpipla Palace. 
-            From tickets and tours to accommodation and nearby attractions.
+            Everything you need to know for an unforgettable visit to Vijay Palace in Rajpipla. 
+            From visiting hours and guided tours to accommodation and nearby attractions.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="heritage" size="xl" className="group">
-              <Ticket className="w-5 h-5" />
-              Book Tickets Now
+              <Calendar className="w-5 h-5" />
+              Plan Your Visit
             </Button>
             <Button variant="palace" size="xl">
-              <Calendar className="w-5 h-5" />
-              Schedule Visit
+              <MapPin className="w-5 h-5" />
+              Get Directions
             </Button>
           </div>
         </div>
 
-        <Tabs defaultValue="tickets" className="space-y-8">
+        <Tabs defaultValue="hours" className="space-y-8">
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
-            <TabsTrigger value="tickets">Tickets & Hours</TabsTrigger>
+            <TabsTrigger value="hours">Hours & Entry</TabsTrigger>
             <TabsTrigger value="tours">Guided Tours</TabsTrigger>
             <TabsTrigger value="hotels">Stay</TabsTrigger>
             <TabsTrigger value="attractions">Nearby</TabsTrigger>
             <TabsTrigger value="planning">Trip Planning</TabsTrigger>
           </TabsList>
 
-          {/* Tickets & Hours */}
-          <TabsContent value="tickets" className="space-y-8">
+          {/* Hours & Entry */}
+          <TabsContent value="hours" className="space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Ticket Prices */}
+              {/* Entry Fees */}
               <Card className="bg-card/80 backdrop-blur-sm border-heritage-stone/20">
                 <CardHeader>
                   <CardTitle className="text-heritage-royal flex items-center gap-2">
                     <Ticket className="w-5 h-5" />
-                    Ticket Prices
+                    Entry Fees
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center p-3 bg-heritage-cream/50 rounded-lg">
                     <div>
-                      <span className="font-medium">Indian Adult</span>
+                      <span className="font-medium">Adult</span>
                       <p className="text-sm text-muted-foreground">Age 18+</p>
                     </div>
-                    <span className="font-bold text-heritage-royal">{visitInfo.tickets.adult}</span>
+                    <span className="font-bold text-heritage-royal">{visitInfo.entry.adult}</span>
                   </div>
                   
                   <div className="flex justify-between items-center p-3 bg-heritage-cream/50 rounded-lg">
@@ -185,29 +197,34 @@ const Visit = () => {
                       <span className="font-medium">Student (with ID)</span>
                       <p className="text-sm text-muted-foreground">Valid student ID required</p>
                     </div>
-                    <span className="font-bold text-heritage-royal">{visitInfo.tickets.student}</span>
+                    <span className="font-bold text-heritage-royal">{visitInfo.entry.student}</span>
                   </div>
                   
                   <div className="flex justify-between items-center p-3 bg-heritage-cream/50 rounded-lg">
                     <div>
-                      <span className="font-medium">Foreign Visitor</span>
-                      <p className="text-sm text-muted-foreground">Non-Indian nationals</p>
+                      <span className="font-medium">Child</span>
+                      <p className="text-sm text-muted-foreground">Under 12 years</p>
                     </div>
-                    <span className="font-bold text-heritage-royal">{visitInfo.tickets.foreign}</span>
+                    <span className="font-bold text-heritage-royal">{visitInfo.entry.child}</span>
                   </div>
                   
                   <div className="flex justify-between items-center p-3 bg-heritage-cream/50 rounded-lg">
                     <div>
-                      <span className="font-medium">Group Booking</span>
-                      <p className="text-sm text-muted-foreground">10+ people</p>
+                      <span className="font-medium">Senior Citizen</span>
+                      <p className="text-sm text-muted-foreground">60+ years</p>
                     </div>
-                    <span className="font-bold text-heritage-royal">{visitInfo.tickets.group}</span>
+                    <span className="font-bold text-heritage-royal">{visitInfo.entry.senior}</span>
                   </div>
                   
-                  <Button variant="heritage" className="w-full">
-                    <CreditCard className="w-4 h-4" />
-                    Book Online & Save 10%
-                  </Button>
+                  <div className="p-4 bg-heritage-royal/10 border border-heritage-royal/20 rounded-lg">
+                    <h4 className="font-semibold text-heritage-royal mb-2">Entry Information</h4>
+                    <ul className="text-sm text-muted-foreground space-y-1">
+                      <li>• Entry fees payable at palace entrance</li>
+                      <li>• Photography allowed (no additional fee)</li>
+                      <li>• Guided tours available at extra cost</li>
+                      <li>• Wheelchair accessible areas available</li>
+                    </ul>
+                  </div>
                 </CardContent>
               </Card>
 
@@ -236,55 +253,39 @@ const Visit = () => {
                   </div>
                   
                   <div className="p-4 bg-heritage-royal/10 border border-heritage-royal/20 rounded-lg">
-                    <h4 className="font-semibold text-heritage-royal mb-2">Special Guidelines</h4>
+                    <h4 className="font-semibold text-heritage-royal mb-2">Visit Guidelines</h4>
                     <ul className="text-sm text-muted-foreground space-y-1">
                       <li>• Last entry 1 hour before closing</li>
-                      <li>• Photography permitted (₹200 camera fee)</li>
-                      <li>• Guided tours available in 5 languages</li>
-                      <li>• Wheelchair accessible areas marked</li>
+                      <li>• Photography permitted (no additional fee)</li>
+                      <li>• Guided tours available in 3 languages</li>
+                      <li>• Wheelchair accessible areas available</li>
                     </ul>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
-            {/* Quick Booking */}
+            {/* Visit Planning */}
             <Card className="bg-heritage-royal/5 border border-heritage-royal/10">
               <CardHeader>
-                <CardTitle className="text-heritage-royal text-center">Quick Booking</CardTitle>
+                <CardTitle className="text-heritage-royal text-center">Plan Your Visit</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-heritage-royal mb-2 block">Visit Date</label>
-                    <input 
-                      type="date" 
-                      className="w-full p-2 border border-heritage-stone/20 rounded-lg"
-                      value={selectedDate}
-                      onChange={(e) => setSelectedDate(e.target.value)}
-                    />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <Calendar className="w-8 h-8 text-heritage-royal mx-auto mb-2" />
+                    <h4 className="font-semibold text-heritage-royal mb-1">Choose Your Date</h4>
+                    <p className="text-sm text-muted-foreground">Check opening hours and plan your visit accordingly</p>
                   </div>
-                  <div>
-                    <label className="text-sm font-medium text-heritage-royal mb-2 block">Visitors</label>
-                    <select className="w-full p-2 border border-heritage-stone/20 rounded-lg">
-                      <option>1 Adult</option>
-                      <option>2 Adults</option>
-                      <option>Family (2+2)</option>
-                      <option>Group (5+)</option>
-                    </select>
+                  <div className="text-center">
+                    <Users className="w-8 h-8 text-heritage-royal mx-auto mb-2" />
+                    <h4 className="font-semibold text-heritage-royal mb-1">Group Size</h4>
+                    <p className="text-sm text-muted-foreground">Individual or group visits welcome</p>
                   </div>
-                  <div>
-                    <label className="text-sm font-medium text-heritage-royal mb-2 block">Time Slot</label>
-                    <select className="w-full p-2 border border-heritage-stone/20 rounded-lg">
-                      <option>Morning (9:00-12:00)</option>
-                      <option>Afternoon (12:00-15:00)</option>
-                      <option>Evening (15:00-18:00)</option>
-                    </select>
-                  </div>
-                  <div className="flex items-end">
-                    <Button variant="heritage" className="w-full">
-                      Book Now
-                    </Button>
+                  <div className="text-center">
+                    <Clock className="w-8 h-8 text-heritage-royal mx-auto mb-2" />
+                    <h4 className="font-semibold text-heritage-royal mb-1">Duration</h4>
+                    <p className="text-sm text-muted-foreground">Allow 2-3 hours for complete palace tour</p>
                   </div>
                 </div>
               </CardContent>
@@ -294,8 +295,8 @@ const Visit = () => {
           {/* Guided Tours */}
           <TabsContent value="tours" className="space-y-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-heritage-royal mb-4">Expert-Led Guided Tours</h2>
-              <p className="text-muted-foreground">Enhance your visit with our knowledgeable guides who bring history to life</p>
+              <h2 className="text-3xl font-bold text-heritage-royal mb-4">Vijay Palace Guided Tours</h2>
+              <p className="text-muted-foreground">Enhance your visit with our knowledgeable guides who bring Vijay Palace's history to life</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -353,7 +354,7 @@ const Visit = () => {
                     </div>
                     
                     <Button variant="heritage" className="w-full">
-                      Book This Tour
+                      Inquire About Tour
                     </Button>
                   </CardContent>
                 </Card>
@@ -365,7 +366,7 @@ const Visit = () => {
           <TabsContent value="hotels" className="space-y-8">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-heritage-royal mb-4">Where to Stay</h2>
-              <p className="text-muted-foreground">Comfortable accommodations near Rajpipla Palace for every budget</p>
+              <p className="text-muted-foreground">Comfortable accommodations near Vijay Palace in Rajpipla for every budget</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -411,7 +412,7 @@ const Visit = () => {
                     
                     <div className="flex gap-2">
                       <Button variant="heritage" size="sm" className="flex-1">
-                        Book Room
+                        Contact Hotel
                       </Button>
                       <Button variant="palace" size="sm">
                         <Phone className="w-4 h-4" />
@@ -427,7 +428,7 @@ const Visit = () => {
           <TabsContent value="attractions" className="space-y-8">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-heritage-royal mb-4">Explore the Region</h2>
-              <p className="text-muted-foreground">Discover other fascinating attractions near Rajpipla Palace</p>
+              <p className="text-muted-foreground">Discover other fascinating attractions near Vijay Palace in Rajpipla</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -440,7 +441,7 @@ const Visit = () => {
                     </div>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <MapPin className="w-4 h-4" />
-                      {attraction.distance} from palace
+                      {attraction.distance} from Vijay Palace
                     </div>
                   </CardHeader>
                   
@@ -490,7 +491,7 @@ const Visit = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-2">By Road</h4>
-                    <p className="text-sm text-muted-foreground">Well-connected via NH53. Taxi and bus services available</p>
+                    <p className="text-sm text-muted-foreground">Well-connected via NH53. Taxi and bus services available from Rajpipla</p>
                   </div>
                 </CardContent>
               </Card>
@@ -552,19 +553,19 @@ const Visit = () => {
                 <CardContent className="space-y-3">
                   <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4 text-heritage-terracotta" />
-                    <span className="text-sm">+91 98765 43210</span>
+                    <span className="text-sm">+91 2642 220000</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Mail className="w-4 h-4 text-heritage-terracotta" />
-                    <span className="text-sm">visit@rajpipla-heritage.com</span>
+                    <span className="text-sm">info@vijaypalace-rajpipla.com</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Globe className="w-4 h-4 text-heritage-terracotta" />
-                    <span className="text-sm">www.rajpipla-heritage.com</span>
+                    <span className="text-sm">www.vijaypalace-rajpipla.com</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <MapPin className="w-4 h-4 mt-1 text-heritage-terracotta flex-shrink-0" />
-                    <span className="text-sm">Rajpipla Palace, Rajpipla, Gujarat 393145</span>
+                    <span className="text-sm">Vijay Palace, Rajpipla, Narmada District, Gujarat 393145</span>
                   </div>
                 </CardContent>
               </Card>

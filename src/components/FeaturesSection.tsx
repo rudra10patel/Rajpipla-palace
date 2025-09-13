@@ -27,12 +27,6 @@ const features = [
     category: "Heritage Preservation"
   },
   {
-    icon: Smartphone,
-    title: "AR Heritage Experience",
-    description: "Use augmented reality to see historical overlays and witness how the palace looked across different eras.",
-    category: "Tourism Enhancement"
-  },
-  {
     icon: MapPin,
     title: "Smart Tourism Hub",
     description: "Plan your visit with real-time information on tours, tickets, accommodations, and nearby attractions.",

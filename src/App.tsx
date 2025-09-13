@@ -7,7 +7,7 @@ import { Navigation } from "@/components/Navigation";
 import Index from "./pages/Index";
 import VirtualTour from "./pages/VirtualTour";
 import DigitalArchive from "./pages/DigitalArchive";
-import ARExperience from "./pages/ARExperience";
+import AudioTour from "./pages/AudioTour";
 import Visit from "./pages/Visit";
 import Community from "./pages/Community";
 import AIGuide from "./pages/AIGuide";
@@ -26,7 +26,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/virtual-tour" element={<VirtualTour />} />
           <Route path="/archive" element={<DigitalArchive />} />
-          <Route path="/ar-experience" element={<ARExperience />} />
+          <Route path="/audio-tour" element={<AudioTour />} />
           <Route path="/visit" element={<Visit />} />
           <Route path="/community" element={<Community />} />
           <Route path="/ai-guide" element={<AIGuide />} />

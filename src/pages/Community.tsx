@@ -55,7 +55,7 @@ const communityStories = [
     author: "Anita Patel",
     role: "Tourist",
     avatar: "/api/placeholder/40/40",
-    story: "Visiting virtually before my actual trip helped me appreciate so much more during my physical visit. The AR features were incredible! My children were fascinated by the interactive elements.",
+    story: "Visiting virtually before my actual trip helped me appreciate so much more during my physical visit. The virtual tour features were incredible! My children were fascinated by the interactive elements.",
     images: ["/api/placeholder/300/200", "/api/placeholder/300/200", "/api/placeholder/300/200"],
     likes: 156,
     comments: 24,

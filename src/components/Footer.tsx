@@ -39,7 +39,6 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Virtual Tours</a></li>
               <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Digital Archive</a></li>
-              <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">AR Experiences</a></li>
               <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Heritage Timeline</a></li>
               <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Community Stories</a></li>
             </ul>

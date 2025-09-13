@@ -20,108 +20,170 @@ import {
 
 const timelineEvents = [
   {
-    year: "1736",
-    title: "Foundation of Rajpipla State",
-    description: "Maharaja Wakhat Singh establishes the princely state and begins construction of the palace.",
+    year: "1820s",
+    title: "Foundation of Vijay Palace",
+    description: "Initial construction of Vijay Palace begins under the Gohil dynasty. Strategic location chosen in Rajpipla for administrative and residential purposes with Indo-Islamic architectural style.",
     type: "Foundation",
-    artifacts: ["Royal Charter", "Foundation Stones", "Early Sketches"]
+    artifacts: ["Foundation Stones", "Initial Blueprints", "Royal Charter", "Construction Records"]
   },
   {
-    year: "1768",
-    title: "Palace Construction Completed",
-    description: "The main palace structure is completed with 45 rooms and beautiful gardens.",
+    year: "1850s",
+    title: "Palace Expansion Era",
+    description: "Major expansion of the palace complex with additional wings, courtyards, royal gardens, and pavilions. Establishment of royal treasury and administrative offices.",
     type: "Architecture",
-    artifacts: ["Construction Records", "Architectural Drawings", "Payment Ledgers"]
+    artifacts: ["Expansion Plans", "Garden Designs", "Treasury Records", "Administrative Documents"]
   },
   {
-    year: "1820",
-    title: "British Recognition",
-    description: "The British recognize Rajpipla as a salute state with 13-gun salute privilege.",
-    type: "Political",
-    artifacts: ["British Treaties", "Official Letters", "Ceremonial Documents"]
-  },
-  {
-    year: "1885",
-    title: "Palace Renovation",
-    description: "Major renovations add European architectural elements and modern amenities.",
+    year: "1870s",
+    title: "Golden Era Begins",
+    description: "Major architectural enhancements with European influences. Construction of the Durbar Hall for royal audiences and installation of modern amenities.",
     type: "Architecture",
-    artifacts: ["Renovation Plans", "European Artifacts", "Modern Fixtures"]
+    artifacts: ["Durbar Hall Plans", "European Artifacts", "Modern Fixtures", "Royal Portraits"]
   },
   {
-    year: "1920",
-    title: "Golden Jubilee Celebrations",
-    description: "Grand celebrations mark 50 years of progressive rule and cultural patronage.",
+    year: "1890s",
+    title: "Cultural Center Establishment",
+    description: "Palace becomes the center of cultural and political activities. Royal library established with rare manuscripts and heritage artifacts curated.",
     type: "Cultural",
-    artifacts: ["Celebration Photos", "Guest Lists", "Commemorative Items"]
+    artifacts: ["Library Catalog", "Manuscript Collection", "Cultural Records", "Art Collections"]
+  },
+  {
+    year: "1900s",
+    title: "Modernization Period",
+    description: "Introduction of electricity and modern conveniences. Renovation of royal chambers and public spaces. Establishment of the palace museum.",
+    type: "Modernization",
+    artifacts: ["Electrical Plans", "Modern Amenities", "Museum Catalog", "Renovation Records"]
+  },
+  {
+    year: "1920s",
+    title: "Political Transition",
+    description: "Political changes during British colonial period. Palace adapts to new administrative roles while maintaining cultural preservation efforts.",
+    type: "Political",
+    artifacts: ["Political Documents", "Administrative Records", "Cultural Preservation Plans", "Colonial Correspondence"]
   },
   {
     year: "1947",
-    title: "Integration with India",
-    description: "Rajpipla State merges with the Indian Union, marking the end of princely rule.",
+    title: "Independence Era",
+    description: "Post-independence era brings administrative changes. Palace continues as cultural and heritage center with first public access granted to certain areas.",
     type: "Political",
-    artifacts: ["Merger Documents", "Final Royal Proclamations", "Transition Records"]
+    artifacts: ["Independence Documents", "Public Access Records", "Heritage Recognition", "Cultural Programs"]
+  },
+  {
+    year: "1960s",
+    title: "Heritage Conservation",
+    description: "Heritage conservation initiatives begin. Palace recognized as important cultural monument with tourism and educational programs introduced.",
+    type: "Heritage",
+    artifacts: ["Conservation Plans", "Heritage Documentation", "Tourism Records", "Educational Materials"]
+  },
+  {
+    year: "1980s",
+    title: "Official Heritage Recognition",
+    description: "Official heritage site designation with major restoration and conservation projects. Digital documentation of palace artifacts begins.",
+    type: "Heritage",
+    artifacts: ["Heritage Certificates", "Restoration Records", "Digital Archives", "Conservation Reports"]
+  },
+  {
+    year: "2000s",
+    title: "UNESCO Consideration",
+    description: "UNESCO heritage consideration with modern visitor facilities added. Cultural festivals and events established for public engagement.",
+    type: "Recognition",
+    artifacts: ["UNESCO Documents", "Visitor Facilities", "Festival Records", "Public Engagement Programs"]
+  },
+  {
+    year: "2010s",
+    title: "Digital Heritage Era",
+    description: "Digital archive project initiated with virtual tour development begins. Online heritage documentation and global accessibility.",
+    type: "Digital",
+    artifacts: ["Digital Archives", "Virtual Tour Development", "Online Documentation", "Global Access Records"]
+  },
+  {
+    year: "2020s",
+    title: "AI & Virtual Reality",
+    description: "360° virtual tour implementation with AI-guided heritage experiences. Global accessibility through digital platforms and next-generation heritage technology.",
+    type: "Technology",
+    artifacts: ["VR Implementation", "AI Development", "Global Platform Records", "Technology Integration"]
   }
 ];
 
 const digitalArtifacts = [
   {
     id: 1,
-    title: "Royal Family Portrait Collection",
-    type: "Photography",
-    year: "1890-1920",
-    description: "Rare photographs of the royal family during various ceremonies and daily life.",
-    count: 127,
-    category: "Photos",
-    thumbnail: "/api/placeholder/300/200"
-  },
-  {
-    id: 2,
-    title: "Architectural Blueprints",
+    title: "Vijay Palace Architectural Evolution",
     type: "Document",
-    year: "1750-1885",
-    description: "Original construction and renovation plans showing the evolution of palace design.",
-    count: 45,
+    year: "1820-2024",
+    description: "Complete collection of architectural plans, blueprints, and renovation records showing the evolution of Vijay Palace from foundation to modern conservation.",
+    count: 156,
     category: "Architecture",
     thumbnail: "/api/placeholder/300/200"
   },
   {
+    id: 2,
+    title: "Gohil Dynasty Royal Portraits",
+    type: "Photography",
+    year: "1850-1947",
+    description: "Extensive collection of royal family portraits, ceremonial photographs, and daily life documentation of the Gohil dynasty rulers.",
+    count: 234,
+    category: "Photos",
+    thumbnail: "/api/placeholder/300/200"
+  },
+  {
     id: 3,
-    title: "Royal Correspondence",
-    type: "Manuscript",
-    year: "1800-1947",
-    description: "Letters between maharajas and British officials, revealing political relationships.",
-    count: 89,
-    category: "Documents",
+    title: "Heritage Museum Artifacts",
+    type: "Art",
+    year: "1820-1900",
+    description: "Digital documentation of royal artifacts, ceremonial objects, jewelry, and decorative arts preserved in the palace museum.",
+    count: 189,
+    category: "Art",
     thumbnail: "/api/placeholder/300/200"
   },
   {
     id: 4,
-    title: "Court Ceremony Records",
-    type: "Document",
-    year: "1820-1940",
-    description: "Detailed records of royal ceremonies, festivals, and state functions.",
-    count: 156,
+    title: "Cultural Festival Documentation",
+    type: "Photography",
+    year: "1890-2024",
+    description: "Comprehensive records of traditional festivals, cultural celebrations, and heritage events held at Vijay Palace.",
+    count: 127,
     category: "Ceremonies",
     thumbnail: "/api/placeholder/300/200"
   },
   {
     id: 5,
-    title: "Palace Artwork Collection",
-    type: "Art",
-    year: "1750-1900",
-    description: "Digital scans of paintings, sculptures, and decorative arts from the palace.",
-    count: 234,
-    category: "Art",
+    title: "Royal Library Manuscripts",
+    type: "Manuscript",
+    year: "1820-1947",
+    description: "Rare manuscripts, royal documents, administrative records, and historical correspondence from the palace library.",
+    count: 98,
+    category: "Documents",
     thumbnail: "/api/placeholder/300/200"
   },
   {
     id: 6,
-    title: "Traditional Music Recordings",
-    type: "Audio",
-    year: "1920-1947",
-    description: "Rare recordings of court musicians and traditional performances.",
-    count: 67,
-    category: "Music",
+    title: "Palace Garden Heritage",
+    type: "Photography",
+    year: "1850-2024",
+    description: "Documentation of palace gardens, landscaping evolution, and outdoor architectural features through different eras.",
+    count: 145,
+    category: "Photos",
+    thumbnail: "/api/placeholder/300/200"
+  },
+  {
+    id: 7,
+    title: "Conservation & Restoration Records",
+    type: "Document",
+    year: "1980-2024",
+    description: "Detailed records of heritage conservation efforts, restoration projects, and preservation initiatives at Vijay Palace.",
+    count: 78,
+    category: "Documents",
+    thumbnail: "/api/placeholder/300/200"
+  },
+  {
+    id: 8,
+    title: "Digital Heritage Collection",
+    type: "Digital",
+    year: "2010-2024",
+    description: "Modern digital documentation including 360° photography, virtual tour development, and AI-guided heritage experiences.",
+    count: 267,
+    category: "Digital",
     thumbnail: "/api/placeholder/300/200"
   }
 ];
@@ -139,27 +201,27 @@ const DigitalArchive = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-heritage-royal mb-6">
-            Digital Heritage Archive
+            Vijay Palace Digital Archive
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Explore centuries of preserved history through our comprehensive digital archive. 
-            Discover rare photographs, manuscripts, architectural plans, and cultural artifacts.
+            Explore 200+ years of Vijay Palace's rich history and cultural significance through our comprehensive digital archive. 
+            Discover architectural evolution, royal heritage, and cultural preservation efforts.
           </p>
         </div>
 
         {/* Archive Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           <div className="text-center">
-            <div className="text-3xl font-bold text-heritage-royal mb-2">2,500+</div>
+            <div className="text-3xl font-bold text-heritage-royal mb-2">1,294</div>
             <div className="text-muted-foreground">Digital Items</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-heritage-gold mb-2">300</div>
+            <div className="text-3xl font-bold text-heritage-gold mb-2">200+</div>
             <div className="text-muted-foreground">Years Covered</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-heritage-terracotta mb-2">12</div>
-            <div className="text-muted-foreground">Categories</div>
+            <div className="text-3xl font-bold text-heritage-terracotta mb-2">8</div>
+            <div className="text-muted-foreground">Collections</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-heritage-royal mb-2">4K</div>
@@ -177,8 +239,8 @@ const DigitalArchive = () => {
           {/* Timeline Tab */}
           <TabsContent value="timeline" className="space-y-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-heritage-royal mb-4">300 Years of Royal History</h2>
-              <p className="text-muted-foreground">Journey through the major milestones in Rajpipla Palace's history</p>
+              <h2 className="text-3xl font-bold text-heritage-royal mb-4">200+ Years of Vijay Palace Heritage</h2>
+              <p className="text-muted-foreground">Journey through the major milestones in Vijay Palace's rich history and cultural significance</p>
             </div>
 
             <div className="relative">
@@ -232,7 +294,7 @@ const DigitalArchive = () => {
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
               <h2 className="text-3xl font-bold text-heritage-royal">Digital Collections</h2>
               
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <Button 
                   variant={selectedCategory === "all" ? "heritage" : "palace"} 
                   size="sm"
@@ -260,6 +322,27 @@ const DigitalArchive = () => {
                   onClick={() => setSelectedCategory("art")}
                 >
                   Art
+                </Button>
+                <Button 
+                  variant={selectedCategory === "architecture" ? "heritage" : "palace"} 
+                  size="sm"
+                  onClick={() => setSelectedCategory("architecture")}
+                >
+                  Architecture
+                </Button>
+                <Button 
+                  variant={selectedCategory === "ceremonies" ? "heritage" : "palace"} 
+                  size="sm"
+                  onClick={() => setSelectedCategory("ceremonies")}
+                >
+                  Ceremonies
+                </Button>
+                <Button 
+                  variant={selectedCategory === "digital" ? "heritage" : "palace"} 
+                  size="sm"
+                  onClick={() => setSelectedCategory("digital")}
+                >
+                  Digital
                 </Button>
               </div>
             </div>
