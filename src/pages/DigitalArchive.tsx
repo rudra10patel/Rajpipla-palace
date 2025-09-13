@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { 
   Search, 
   Calendar, 
@@ -15,7 +16,11 @@ import {
   User,
   Crown,
   Scroll,
-  MapPin
+  MapPin,
+  ZoomIn,
+  ZoomOut,
+  RotateCw,
+  X
 } from "lucide-react";
 
 const timelineEvents = [
@@ -105,95 +110,63 @@ const timelineEvents = [
   }
 ];
 
-const digitalArtifacts = [
-  {
-    id: 1,
-    title: "Vijay Palace Architectural Evolution",
-    type: "Document",
-    year: "1820-2024",
-    description: "Complete collection of architectural plans, blueprints, and renovation records showing the evolution of Vijay Palace from foundation to modern conservation.",
-    count: 156,
-    category: "Architecture",
-    thumbnail: "/api/placeholder/300/200"
-  },
-  {
-    id: 2,
-    title: "Gohil Dynasty Royal Portraits",
-    type: "Photography",
-    year: "1850-1947",
-    description: "Extensive collection of royal family portraits, ceremonial photographs, and daily life documentation of the Gohil dynasty rulers.",
-    count: 234,
-    category: "Photos",
-    thumbnail: "/api/placeholder/300/200"
-  },
-  {
-    id: 3,
-    title: "Heritage Museum Artifacts",
-    type: "Art",
-    year: "1820-1900",
-    description: "Digital documentation of royal artifacts, ceremonial objects, jewelry, and decorative arts preserved in the palace museum.",
-    count: 189,
-    category: "Art",
-    thumbnail: "/api/placeholder/300/200"
-  },
-  {
-    id: 4,
-    title: "Cultural Festival Documentation",
-    type: "Photography",
-    year: "1890-2024",
-    description: "Comprehensive records of traditional festivals, cultural celebrations, and heritage events held at Vijay Palace.",
-    count: 127,
-    category: "Ceremonies",
-    thumbnail: "/api/placeholder/300/200"
-  },
-  {
-    id: 5,
-    title: "Royal Library Manuscripts",
-    type: "Manuscript",
-    year: "1820-1947",
-    description: "Rare manuscripts, royal documents, administrative records, and historical correspondence from the palace library.",
-    count: 98,
-    category: "Documents",
-    thumbnail: "/api/placeholder/300/200"
-  },
-  {
-    id: 6,
-    title: "Palace Garden Heritage",
-    type: "Photography",
-    year: "1850-2024",
-    description: "Documentation of palace gardens, landscaping evolution, and outdoor architectural features through different eras.",
-    count: 145,
-    category: "Photos",
-    thumbnail: "/api/placeholder/300/200"
-  },
-  {
-    id: 7,
-    title: "Conservation & Restoration Records",
-    type: "Document",
-    year: "1980-2024",
-    description: "Detailed records of heritage conservation efforts, restoration projects, and preservation initiatives at Vijay Palace.",
-    count: 78,
-    category: "Documents",
-    thumbnail: "/api/placeholder/300/200"
-  },
-  {
-    id: 8,
-    title: "Digital Heritage Collection",
-    type: "Digital",
-    year: "2010-2024",
-    description: "Modern digital documentation including 360° photography, virtual tour development, and AI-guided heritage experiences.",
-    count: 267,
-    category: "Digital",
-    thumbnail: "/api/placeholder/300/200"
-  }
-];
-
 const DigitalArchive = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [rotation, setRotation] = useState(0);
 
-  const filteredArtifacts = selectedCategory === "all" 
-    ? digitalArtifacts 
-    : digitalArtifacts.filter(artifact => artifact.category.toLowerCase() === selectedCategory.toLowerCase());
+  const vijayPalacePhotos = [
+    "/vijay-palace-photos/front-side-of-rajvant.jpg",
+    "/vijay-palace-photos/rajvant-palace-resort.jpg",
+    "/vijay-palace-photos/MVIMG_20190211_095324.jpg",
+    "/vijay-palace-photos/8289359377_b03475af81_b.jpg",
+    "/vijay-palace-photos/10_960.jpg",
+    "/vijay-palace-photos/09_960.jpg"
+  ];
+
+  const handleZoomIn = () => {
+    setZoomLevel(prev => Math.min(prev + 0.5, 3));
+  };
+
+  const handleZoomOut = () => {
+    setZoomLevel(prev => Math.max(prev - 0.5, 0.5));
+  };
+
+  const handleRotate = () => {
+    setRotation(prev => (prev + 90) % 360);
+  };
+
+  const handlePreviousImage = () => {
+    setCurrentImageIndex(prev => prev === 0 ? vijayPalacePhotos.length - 1 : prev - 1);
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex(prev => prev === vijayPalacePhotos.length - 1 ? 0 : prev + 1);
+  };
+
+  const resetViewer = () => {
+    setZoomLevel(1);
+    setRotation(0);
+  };
+
+  const downloadImage = (imageUrl: string, filename: string) => {
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const downloadAllPhotos = () => {
+    vijayPalacePhotos.forEach((photo, index) => {
+      setTimeout(() => {
+        const filename = `vijay-palace-${index + 1}.jpg`;
+        downloadImage(photo, filename);
+      }, index * 500); // Stagger downloads by 500ms
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-subtle pt-20">
@@ -230,10 +203,9 @@ const DigitalArchive = () => {
         </div>
 
         <Tabs defaultValue="timeline" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="timeline">Heritage Timeline</TabsTrigger>
             <TabsTrigger value="artifacts">Digital Artifacts</TabsTrigger>
-            <TabsTrigger value="search">Advanced Search</TabsTrigger>
           </TabsList>
 
           {/* Timeline Tab */}
@@ -291,213 +263,190 @@ const DigitalArchive = () => {
 
           {/* Artifacts Tab */}
           <TabsContent value="artifacts" className="space-y-8">
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
-              <h2 className="text-3xl font-bold text-heritage-royal">Digital Collections</h2>
-              
-              <div className="flex flex-wrap gap-2">
-                <Button 
-                  variant={selectedCategory === "all" ? "heritage" : "palace"} 
-                  size="sm"
-                  onClick={() => setSelectedCategory("all")}
-                >
-                  All
-                </Button>
-                <Button 
-                  variant={selectedCategory === "photos" ? "heritage" : "palace"} 
-                  size="sm"
-                  onClick={() => setSelectedCategory("photos")}
-                >
-                  Photos
-                </Button>
-                <Button 
-                  variant={selectedCategory === "documents" ? "heritage" : "palace"} 
-                  size="sm"
-                  onClick={() => setSelectedCategory("documents")}
-                >
-                  Documents
-                </Button>
-                <Button 
-                  variant={selectedCategory === "art" ? "heritage" : "palace"} 
-                  size="sm"
-                  onClick={() => setSelectedCategory("art")}
-                >
-                  Art
-                </Button>
-                <Button 
-                  variant={selectedCategory === "architecture" ? "heritage" : "palace"} 
-                  size="sm"
-                  onClick={() => setSelectedCategory("architecture")}
-                >
-                  Architecture
-                </Button>
-                <Button 
-                  variant={selectedCategory === "ceremonies" ? "heritage" : "palace"} 
-                  size="sm"
-                  onClick={() => setSelectedCategory("ceremonies")}
-                >
-                  Ceremonies
-                </Button>
-                <Button 
-                  variant={selectedCategory === "digital" ? "heritage" : "palace"} 
-                  size="sm"
-                  onClick={() => setSelectedCategory("digital")}
-                >
-                  Digital
-                </Button>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredArtifacts.map((artifact) => (
-                <Card key={artifact.id} className="group hover:shadow-heritage transition-royal bg-card/80 backdrop-blur-sm border-heritage-stone/20 overflow-hidden">
-                  <div className="relative">
-                    <div 
-                      className="aspect-video bg-heritage-stone/20 bg-cover bg-center"
-                      style={{ backgroundImage: `url(${artifact.thumbnail})` }}
-                    >
-                      <div className="absolute inset-0 bg-heritage-royal/20 group-hover:bg-heritage-royal/40 transition-royal flex items-center justify-center">
-                        <Button variant="heritage" size="icon" className="opacity-0 group-hover:opacity-100 transition-all">
-                          <Eye className="w-5 h-5" />
-                        </Button>
-                      </div>
-                    </div>
-                    
-                    <div className="absolute top-3 right-3">
-                      <Badge variant="secondary" className="bg-heritage-cream/90 text-heritage-royal">
-                        {artifact.count} items
-                      </Badge>
-                    </div>
-                  </div>
-                  
-                  <CardHeader>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Badge variant="outline">{artifact.category}</Badge>
-                      <Badge variant="outline">{artifact.year}</Badge>
-                    </div>
-                    <CardTitle className="text-lg text-heritage-royal">{artifact.title}</CardTitle>
-                  </CardHeader>
-                  
-                  <CardContent>
-                    <CardDescription className="text-base mb-4">
-                      {artifact.description}
-                    </CardDescription>
-                    
-                    <div className="flex gap-2">
-                      <Button variant="heritage" size="sm" className="flex-1">
-                        <Eye className="w-4 h-4" />
-                        View Collection
-                      </Button>
-                      <Button variant="palace" size="sm">
-                        <Download className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-
-          {/* Search Tab */}
-          <TabsContent value="search" className="space-y-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-heritage-royal mb-4">Advanced Archive Search</h2>
-              <p className="text-muted-foreground">Search through our extensive digital collection using advanced filters</p>
+              <h2 className="text-3xl font-bold text-heritage-royal mb-4">Vijay Palace Heritage Collection</h2>
+              <p className="text-muted-foreground">Explore the magnificent Vijay Palace through our curated digital collection</p>
             </div>
 
-            <Card className="bg-card/80 backdrop-blur-sm border-heritage-stone/20 p-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-heritage-royal">Search Term</label>
-                  <div className="relative">
-                    <Search className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-                    <input 
-                      type="text" 
-                      placeholder="Search artifacts, people, events..."
-                      className="w-full pl-10 pr-4 py-2 border border-heritage-stone/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-heritage-royal/20"
-                    />
+            {/* Single Large Card */}
+            <div className="max-w-5xl mx-auto">
+              <Card className="group hover:shadow-heritage transition-royal bg-card/80 backdrop-blur-sm border-heritage-stone/20 overflow-hidden">
+                <div className="relative">
+                  <div 
+                    className="aspect-[16/10] bg-heritage-stone/20 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${vijayPalacePhotos[0]})` }}
+                  >
+                    <div className="absolute inset-0 bg-heritage-royal/20 group-hover:bg-heritage-royal/40 transition-royal flex items-center justify-center">
+                      <Dialog open={isViewerOpen} onOpenChange={setIsViewerOpen}>
+                        <DialogTrigger asChild>
+                          <Button variant="heritage" size="icon" className="opacity-0 group-hover:opacity-100 transition-all">
+                            <Eye className="w-6 h-6" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-6xl max-h-[90vh] p-0">
+                          <DialogHeader className="p-6 pb-0">
+                            <DialogTitle className="text-heritage-royal">Vijay Palace Photo Gallery</DialogTitle>
+                          </DialogHeader>
+                          <div className="relative p-6">
+                            <div className="flex items-center justify-between mb-4">
+                              <div className="flex items-center gap-2">
+                                <Button variant="outline" size="sm" onClick={handlePreviousImage}>
+                                  ← Previous
+                                </Button>
+                                <span className="text-sm text-muted-foreground">
+                                  {currentImageIndex + 1} of {vijayPalacePhotos.length}
+                                </span>
+                                <Button variant="outline" size="sm" onClick={handleNextImage}>
+                                  Next →
+                                </Button>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Button variant="outline" size="sm" onClick={handleZoomOut}>
+                                  <ZoomOut className="w-4 h-4" />
+                                </Button>
+                                <span className="text-sm text-muted-foreground">{Math.round(zoomLevel * 100)}%</span>
+                                <Button variant="outline" size="sm" onClick={handleZoomIn}>
+                                  <ZoomIn className="w-4 h-4" />
+                                </Button>
+                                <Button variant="outline" size="sm" onClick={handleRotate}>
+                                  <RotateCw className="w-4 h-4" />
+                                </Button>
+                                <Button variant="outline" size="sm" onClick={resetViewer}>
+                                  Reset
+                                </Button>
+                                <Button 
+                                  variant="heritage" 
+                                  size="sm" 
+                                  onClick={() => downloadImage(vijayPalacePhotos[currentImageIndex], `vijay-palace-${currentImageIndex + 1}.jpg`)}
+                                >
+                                  <Download className="w-4 h-4" />
+                                </Button>
+                              </div>
+                            </div>
+                            <div className="flex justify-center items-center bg-gray-100 rounded-lg overflow-hidden" style={{ height: '60vh' }}>
+                              <img
+                                src={vijayPalacePhotos[currentImageIndex]}
+                                alt={`Vijay Palace ${currentImageIndex + 1}`}
+                                className="max-w-full max-h-full object-contain transition-transform duration-200"
+                                style={{
+                                  transform: `scale(${zoomLevel}) rotate(${rotation}deg)`,
+                                  cursor: zoomLevel > 1 ? 'grab' : 'default'
+                                }}
+                                draggable={false}
+                              />
+                            </div>
+                            <div className="flex justify-center mt-4 gap-2">
+                              {vijayPalacePhotos.map((photo, index) => (
+                                <div key={index} className="relative group">
+                                  <button
+                                    onClick={() => setCurrentImageIndex(index)}
+                                    className={`w-16 h-12 rounded border-2 overflow-hidden ${
+                                      index === currentImageIndex 
+                                        ? 'border-heritage-royal' 
+                                        : 'border-gray-300 hover:border-heritage-royal/50'
+                                    }`}
+                                  >
+                                    <img
+                                      src={photo}
+                                      alt={`Thumbnail ${index + 1}`}
+                                      className="w-full h-full object-cover"
+                                    />
+                                  </button>
+                                  <Button
+                                    variant="heritage"
+                                    size="sm"
+                                    className="absolute -top-2 -right-2 w-6 h-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      downloadImage(photo, `vijay-palace-${index + 1}.jpg`);
+                                    }}
+                                  >
+                                    <Download className="w-3 h-3" />
+                                  </Button>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute top-4 right-4">
+                    <Badge variant="secondary" className="bg-heritage-cream/90 text-heritage-royal text-sm px-3 py-1">
+                      Available
+                    </Badge>
                   </div>
                 </div>
                 
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-heritage-royal">Date Range</label>
-                  <div className="relative">
-                    <Calendar className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-                    <select className="w-full pl-10 pr-4 py-2 border border-heritage-stone/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-heritage-royal/20">
-                      <option>All Periods</option>
-                      <option>1700-1800</option>
-                      <option>1800-1900</option>
-                      <option>1900-1947</option>
-                    </select>
+                <CardHeader className="pb-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <CardTitle className="text-2xl text-heritage-royal">Vijay Palace Heritage Collection</CardTitle>
+                    <Badge variant="outline" className="bg-orange-500 text-white border-orange-500">
+                      Photography
+                    </Badge>
                   </div>
-                </div>
+                  
+                  <div className="flex items-center gap-2 text-muted-foreground mb-4">
+                    <Calendar className="w-4 h-4" />
+                    <span>1820-2024</span>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <h3 className="text-lg font-semibold text-heritage-royal">Vijay Palace Heritage Collection</h3>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="font-medium text-heritage-royal">Language:</span> English, Hindi, Gujarati
+                      </div>
+                      <div>
+                        <span className="font-medium text-heritage-royal">Category:</span> Heritage Photography
+                      </div>
+                      <div>
+                        <span className="font-medium text-heritage-royal">Condition:</span> <span className="font-bold">Excellent</span>
+                      </div>
+                      <div>
+                        <span className="font-medium text-heritage-royal">Material:</span> Digital, High-Resolution
+                      </div>
+                    </div>
+                  </div>
+                </CardHeader>
                 
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-heritage-royal">Content Type</label>
-                  <div className="relative">
-                    <Filter className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-                    <select className="w-full pl-10 pr-4 py-2 border border-heritage-stone/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-heritage-royal/20">
-                      <option>All Types</option>
-                      <option>Photographs</option>
-                      <option>Documents</option>
-                      <option>Artwork</option>
-                      <option>Audio</option>
-                    </select>
+                <CardContent className="pt-0">
+                  <CardDescription className="text-base mb-6">
+                    A comprehensive digital collection showcasing the architectural grandeur and cultural significance of Vijay Palace. 
+                    This collection includes rare photographs, architectural documentation, and historical records spanning over 200 years 
+                    of the palace's rich heritage in Rajpipla. Explore the magnificent architecture, royal chambers, and cultural artifacts 
+                    that tell the story of this historic landmark.
+                  </CardDescription>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <Badge variant="outline" className="text-xs">Heritage</Badge>
+                    <Badge variant="outline" className="text-xs">Architecture</Badge>
+                    <Badge variant="outline" className="text-xs">Gohil Dynasty</Badge>
+                    <Badge variant="outline" className="text-xs">Rajpipla</Badge>
+                    <Badge variant="outline" className="text-xs">Royal Palace</Badge>
+                    <Badge variant="outline" className="text-xs">Cultural Heritage</Badge>
                   </div>
-                </div>
-              </div>
-              
-              <div className="mt-6 flex gap-4">
-                <Button variant="heritage" className="flex-1">
-                  <Search className="w-4 h-4" />
-                  Search Archive
-                </Button>
-                <Button variant="palace">
-                  Clear Filters
-                </Button>
-              </div>
-            </Card>
-
-            {/* Search Results Preview */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="bg-card/80 backdrop-blur-sm border-heritage-stone/20">
-                <CardHeader>
-                  <CardTitle className="text-heritage-royal">Recent Discoveries</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {[
-                    { title: "Royal Wedding Album 1892", type: "Photography", items: 23 },
-                    { title: "Palace Construction Diary", type: "Manuscript", items: 1 },
-                    { title: "Court Musician Records", type: "Audio", items: 12 }
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-heritage-cream/50 rounded-lg">
-                      <div>
-                        <h4 className="font-medium text-heritage-royal">{item.title}</h4>
-                        <p className="text-sm text-muted-foreground">{item.type}</p>
-                      </div>
-                      <Badge variant="outline">{item.items} items</Badge>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card/80 backdrop-blur-sm border-heritage-stone/20">
-                <CardHeader>
-                  <CardTitle className="text-heritage-royal">Popular Collections</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {[
-                    { title: "Royal Portraits Gallery", views: "45.2K", rating: 4.9 },
-                    { title: "Architecture Evolution", views: "32.1K", rating: 4.8 },
-                    { title: "Festival Celebrations", views: "28.7K", rating: 4.9 }
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-heritage-cream/50 rounded-lg">
-                      <div>
-                        <h4 className="font-medium text-heritage-royal">{item.title}</h4>
-                        <p className="text-sm text-muted-foreground">{item.views} views</p>
-                      </div>
-                      <Badge variant="outline">★ {item.rating}</Badge>
-                    </div>
-                  ))}
+                  
+                  <div className="flex gap-3">
+                    <Dialog open={isViewerOpen} onOpenChange={setIsViewerOpen}>
+                      <DialogTrigger asChild>
+                        <Button variant="heritage" size="lg" className="flex-1">
+                          <Eye className="w-5 h-5 mr-2" />
+                          View Collection
+                        </Button>
+                      </DialogTrigger>
+                    </Dialog>
+                    <Button 
+                      variant="palace" 
+                      size="lg" 
+                      onClick={downloadAllPhotos}
+                      className="flex-1"
+                    >
+                      <Download className="w-5 h-5 mr-2" />
+                      Download All
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </div>

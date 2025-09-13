@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { 
   Calendar, 
   Clock, 
@@ -37,31 +38,53 @@ const visitInfo = {
 
 const nearbyHotels = [
   {
-    name: "Hotel Rajpipla Palace",
-    category: "Heritage",
-    rating: 4.5,
-    price: "₹3,500/night",
-    distance: "0.5 km",
-    amenities: ["Heritage Rooms", "Restaurant", "WiFi", "Parking"],
-    contact: "+91 2642 220001"
-  },
-  {
-    name: "Narmada Hotel",
-    category: "Premium",
-    rating: 4.3,
-    price: "₹2,800/night",
-    distance: "1.0 km",
-    amenities: ["River View", "Restaurant", "WiFi", "AC Rooms"],
-    contact: "+91 2642 220002"
-  },
-  {
-    name: "Rajpipla Guest House",
-    category: "Budget",
-    rating: 4.0,
-    price: "₹1,200/night",
-    distance: "1.5 km",
-    amenities: ["Clean Rooms", "WiFi", "Local Cuisine", "Parking"],
-    contact: "+91 2642 220003"
+    name: "Rajvant Palace Resort",
+    category: "Heritage Resort",
+    rating: 4.6,
+    price: "₹3,200/night",
+    distance: "0.2 km",
+    amenities: ["Heritage Rooms", "Swimming Pool", "Restaurant", "WiFi", "Parking", "Garden View", "AC Rooms", "Room Service", "Conference Hall", "Games Room"],
+    contact: "93289 59004",
+    address: "Vijay Palace, Palace Road, Rajpipla, Dist. Narmada, Gujarat 393145",
+    description: "Experience royal luxury at Rajvant Palace Resort, constructed in 1915 by Maharajah Vijay Singhji. This heritage resort offers 18 well-appointed rooms with original period furniture, blending European architectural elegance with modern amenities. Located within the historic Vijay Palace complex.",
+    googleMapsLink: "https://www.google.co.in/maps/place/Rajvant+Palace+Resort/@21.864097,73.5072385,17z/data=!3m1!4b1!4m9!3m8!1s0x396000d5e9f6e6f5:0x762c20e116ffeb27!5m2!4m1!1i2!8m2!3d21.864097!4d73.5098134!16s%2Fg%2F11btstyffc?entry=ttu&g_ep=EgoyMDI1MDkxMC4wIKXMDSoASAFQAw%3D%3D",
+    bookingOptions: [
+      {
+        name: "Direct Booking",
+        description: "Call the resort directly for reservations",
+        contact: "93289 59004"
+      },
+      {
+        name: "MakeMyTrip",
+        description: "Popular travel booking platform",
+        link: "https://www.makemytrip.com/hotels/rajvant_palace_resort_rajpipla-details.html"
+      },
+      {
+        name: "Booking.com",
+        description: "Global hotel booking platform",
+        link: "https://www.booking.com/hotel/in/rajvant-palace-resort.html"
+      },
+      {
+        name: "Goibibo",
+        description: "Indian travel booking platform",
+        link: "https://www.goibibo.com/hotels/rajvant-palace-resort-rajpipla-htlid-123456/"
+      },
+      {
+        name: "OYO",
+        description: "Budget-friendly booking platform",
+        link: "https://www.oyorooms.com/hotels-in-rajpipla/rajvant-palace-resort"
+      },
+      {
+        name: "Heritage Hotels of India",
+        description: "Official heritage hotel booking platform",
+        link: "https://www.heritagehotelsofindia.com/gujarat/rajvant-palace-resort.html"
+      },
+      {
+        name: "TripAdvisor",
+        description: "Book with reviews and ratings",
+        link: "https://www.tripadvisor.in/Hotel_Review-g1156006-d1806554-Reviews-Rajvant_Palace_Resort-Rajpipla_Narmada_District_Gujarat.html"
+      }
+    ]
   }
 ];
 
@@ -100,37 +123,111 @@ const nearbyAttractions = [
     name: "Shoolpaneshwar Wildlife Sanctuary",
     distance: "45 km",
     description: "Rich biodiversity and wildlife spotting opportunities near Rajpipla",
-    category: "Nature"
+    category: "Nature",
+    googleMapsLink: "https://www.google.com/maps/place/Shoolpaneshwar+Wildlife+Sanctuary,+Gujarat,+India",
+    detailedInfo: `Located in the Narmada district of Gujarat, Shoolpaneshwar Wildlife Sanctuary spreads across over 600 sq. km of lush deciduous forests, rolling hills, and rivers. Nestled close to the Statue of Unity and the Sardar Sarovar Dam, it is a prime eco-tourism spot combining nature, wildlife, and culture.
+
+Key Highlights:
+
+🌿 Rich Biodiversity: Home to leopards, sloth bears, hyenas, barking deer, four-horned antelopes, langurs, and a wide variety of reptiles and birds.
+
+🏞 Scenic Beauty: Dense forests, streams, and seasonal waterfalls offer stunning views and photography opportunities.
+
+⛺ Adventure & Activities: Popular for trekking, jungle trails, and nature camps.
+
+🛕 Cultural Heritage: The ancient Shoolpaneshwar Mahadev Temple adds a spiritual charm.
+
+📍 Nearby Attractions: Statue of Unity, Zarwani Waterfall, Ninai Waterfall, and eco-tourism camps.
+
+Best Time to Visit: October to March, when the weather is pleasant and wildlife sightings are easier.`
   },
   {
     name: "Sardar Sarovar Dam",
     distance: "52 km",
     description: "One of India's largest dams with spectacular views and visitor center",
-    category: "Engineering Marvel"
+    category: "Engineering Marvel",
+    googleMapsLink: "https://www.google.com/maps/place/Sardar+Sarovar+Dam,+Kevadia,+Gujarat,+India",
+    detailedInfo: `The Sardar Sarovar Dam, built on the mighty Narmada River in Gujarat, is one of the largest dams in India and a key landmark of modern engineering. Standing 163 meters tall and stretching 1.2 km in length, it provides water, irrigation, hydroelectric power, and drinking water to millions across Gujarat, Madhya Pradesh, Maharashtra, and Rajasthan.
+
+Key Highlights:
+
+🌊 Engineering Marvel: Among the world's largest concrete gravity dams.
+
+⚡ Hydropower Generation: Produces clean electricity for multiple states.
+
+🚰 Water Supply: Provides irrigation to thousands of villages and drinking water to drought-prone regions.
+
+🏞 Tourist Spot: Offers breathtaking views of the Narmada River, lush greenery, and nearby eco-tourism attractions.
+
+📍 Nearby Attractions: Statue of Unity, Valley of Flowers, Shoolpaneshwar Wildlife Sanctuary, and Zarwani Waterfall.
+
+Best Time to Visit: Monsoon and post-monsoon months (July–October) when the dam is full and the views are most spectacular.`
   },
   {
     name: "Statue of Unity",
     distance: "48 km",
     description: "World's tallest statue of Sardar Vallabhbhai Patel with museum and attractions",
-    category: "Monument"
+    category: "Monument",
+    googleMapsLink: "https://www.google.com/maps/place/Statue+of+Unity,+Kevadia,+Gujarat,+India",
+    detailedInfo: `The Statue of Unity, dedicated to India's Iron Man Sardar Vallabhbhai Patel, is the world's tallest statue at a height of 182 meters. Located on the banks of the Narmada River near Kevadia (Ekta Nagar), Gujarat, it has become one of India's most iconic tourist destinations.
+
+Key Highlights:
+
+🗽 World's Tallest Statue: Almost twice the height of the Statue of Liberty.
+
+👀 Viewing Gallery: Situated at 153 meters, offering panoramic views of the Sardar Sarovar Dam, Narmada River, and surrounding hills.
+
+🎥 Laser Show & Museum: A spectacular light and sound show narrates Sardar Patel's life and India's freedom struggle; the museum and exhibition hall showcase his legacy.
+
+🌸 Nearby Attractions: Valley of Flowers, Jungle Safari, Cactus Garden, Butterfly Park, Ekta Cruise, and Children's Nutrition Park.
+
+🛣 Connectivity: Well-connected by road, rail, and air with Ekta Nagar Railway Station nearby.
+
+Best Time to Visit: October to March for pleasant weather; evenings are ideal to enjoy the laser show.`
   },
   {
     name: "River Narmada Ghat",
     distance: "8 km",
     description: "Sacred ghats on the holy Narmada river for spiritual experiences",
-    category: "Spiritual"
-  },
-  {
-    name: "Rajpipla Fort",
-    distance: "2 km",
-    description: "Historic fort ruins with panoramic views of the surrounding landscape",
-    category: "Heritage"
+    category: "Spiritual",
+    googleMapsLink: "https://www.google.com/maps/search/?api=1&query=Narmada+River+Ghat,+Kevadia,+Gujarat,+India",
+    detailedInfo: `The Narmada River, often called the lifeline of central India, is one of the country's holiest and most picturesque rivers. Flowing through Madhya Pradesh, Maharashtra, and Gujarat before meeting the Arabian Sea, it holds immense spiritual, cultural, and ecological significance. The ghats along the Narmada are popular spots for prayers, festivals, and serene river views.
+
+Key Highlights:
+
+🌊 Sacred River: Considered one of the seven holy rivers of India; devotees believe that a dip in the Narmada purifies the soul.
+
+🛕 Cultural Importance: Famous ghats like Chandika Ghat, Poicha Nilkanth Dham Ghat, and Maheshwar Ghats host daily aarti, rituals, and festivals.
+
+🛶 Peaceful Experience: Boating, evening aarti, and riverside walks offer a spiritual and tranquil escape.
+
+📸 Scenic Beauty: Ghats surrounded by temples, forests, and hills provide stunning views for photography and relaxation.
+
+📍 Nearby Attractions: Statue of Unity, Sardar Sarovar Dam, Shoolpaneshwar Sanctuary, and local temples.
+
+Best Time to Visit: Early mornings and evenings for peaceful river views, especially during festivals like Narmada Jayanti.`
   },
   {
     name: "Narmada River Cruise",
     distance: "15 km",
     description: "Scenic boat rides on the holy Narmada river with nature views",
-    category: "Recreation"
+    category: "Recreation",
+    googleMapsLink: "https://www.google.com/maps/search/?api=1&query=Ekta+Cruise,+Kevadia,+Gujarat,+India",
+    detailedInfo: `The Narmada River Cruise at Ekta Nagar (Kevadia) offers a unique way to experience the beauty of the Statue of Unity and the surrounding landscapes. Sailing on the calm waters of the Narmada, visitors can enjoy breathtaking views of the towering statue, Sardar Sarovar Dam, and lush green hills. The cruise is designed for leisure, sightseeing, and cultural experiences.
+
+Key Highlights:
+
+🚢 Unique Experience: Comfortable boat rides with panoramic views of the Statue of Unity and Narmada River.
+
+🌅 Sunset & Evening Cruises: Stunning views at sunset and illuminated night-time surroundings.
+
+🎶 Entertainment Onboard: Cultural programs, music, and dining options (varies by cruise package).
+
+📸 Photography Spot: Perfect location for memorable clicks of the Statue of Unity from the river.
+
+📍 Nearby Attractions: Valley of Flowers, Jungle Safari, Cactus Garden, and Shoolpaneshwar Sanctuary.
+
+Best Time to Visit: Evening cruises are most popular for sunset views and the night illumination of the Statue of Unity.`
   }
 ];
 
@@ -152,10 +249,6 @@ const Visit = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="heritage" size="xl" className="group">
-              <Calendar className="w-5 h-5" />
-              Plan Your Visit
-            </Button>
             <Button variant="palace" size="xl">
               <MapPin className="w-5 h-5" />
               Get Directions
@@ -164,12 +257,10 @@ const Visit = () => {
         </div>
 
         <Tabs defaultValue="hours" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-3">
             <TabsTrigger value="hours">Hours & Entry</TabsTrigger>
-            <TabsTrigger value="tours">Guided Tours</TabsTrigger>
             <TabsTrigger value="hotels">Stay</TabsTrigger>
             <TabsTrigger value="attractions">Nearby</TabsTrigger>
-            <TabsTrigger value="planning">Trip Planning</TabsTrigger>
           </TabsList>
 
           {/* Hours & Entry */}
@@ -265,157 +356,128 @@ const Visit = () => {
               </Card>
             </div>
 
-            {/* Visit Planning */}
-            <Card className="bg-heritage-royal/5 border border-heritage-royal/10">
-              <CardHeader>
-                <CardTitle className="text-heritage-royal text-center">Plan Your Visit</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <Calendar className="w-8 h-8 text-heritage-royal mx-auto mb-2" />
-                    <h4 className="font-semibold text-heritage-royal mb-1">Choose Your Date</h4>
-                    <p className="text-sm text-muted-foreground">Check opening hours and plan your visit accordingly</p>
-                  </div>
-                  <div className="text-center">
-                    <Users className="w-8 h-8 text-heritage-royal mx-auto mb-2" />
-                    <h4 className="font-semibold text-heritage-royal mb-1">Group Size</h4>
-                    <p className="text-sm text-muted-foreground">Individual or group visits welcome</p>
-                  </div>
-                  <div className="text-center">
-                    <Clock className="w-8 h-8 text-heritage-royal mx-auto mb-2" />
-                    <h4 className="font-semibold text-heritage-royal mb-1">Duration</h4>
-                    <p className="text-sm text-muted-foreground">Allow 2-3 hours for complete palace tour</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </TabsContent>
 
-          {/* Guided Tours */}
-          <TabsContent value="tours" className="space-y-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-heritage-royal mb-4">Vijay Palace Guided Tours</h2>
-              <p className="text-muted-foreground">Enhance your visit with our knowledgeable guides who bring Vijay Palace's history to life</p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {guidedTours.map((tour, index) => (
-                <Card key={index} className="group hover:shadow-heritage transition-royal bg-card/80 backdrop-blur-sm border-heritage-stone/20">
-                  <CardHeader>
-                    <CardTitle className="text-heritage-royal">{tour.name}</CardTitle>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        {tour.duration}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Users className="w-4 h-4" />
-                        Max {tour.maxGroup}
-                      </div>
-                    </div>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-4">
-                    <div className="text-center">
-                      <span className="text-2xl font-bold text-heritage-royal">{tour.price}</span>
-                      <span className="text-muted-foreground"> per person</span>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold text-heritage-royal mb-2">Includes:</h4>
-                      <ul className="text-sm text-muted-foreground space-y-1">
-                        {tour.includes.map((item, i) => (
-                          <li key={i}>• {item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold text-heritage-royal mb-2">Languages:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {tour.languages.map((lang, i) => (
-                          <Badge key={i} variant="outline" className="text-xs">
-                            {lang}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold text-heritage-royal mb-2">Available Times:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {tour.timing.map((time, i) => (
-                          <Badge key={i} variant="secondary" className="text-xs">
-                            {time}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <Button variant="heritage" className="w-full">
-                      Inquire About Tour
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
 
           {/* Hotels */}
           <TabsContent value="hotels" className="space-y-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-heritage-royal mb-4">Where to Stay</h2>
-              <p className="text-muted-foreground">Comfortable accommodations near Vijay Palace in Rajpipla for every budget</p>
+              <h2 className="text-3xl font-bold text-heritage-royal mb-4">Recommended Accommodation</h2>
+              <p className="text-muted-foreground">Experience royal luxury at our partner heritage resort</p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="max-w-4xl mx-auto">
               {nearbyHotels.map((hotel, index) => (
-                <Card key={index} className="group hover:shadow-heritage transition-royal bg-card/80 backdrop-blur-sm border-heritage-stone/20">
-                  <CardHeader>
-                    <div className="flex justify-between items-start mb-2">
-                      <CardTitle className="text-heritage-royal">{hotel.name}</CardTitle>
-                      <Badge variant="outline">{hotel.category}</Badge>
+                <Card key={index} className="group hover:shadow-heritage transition-royal bg-card/80 backdrop-blur-sm border-heritage-stone/20 overflow-hidden">
+                  <div className="relative">
+                    <div 
+                      className="aspect-[16/9] bg-heritage-stone/20 bg-cover bg-center"
+                      style={{ backgroundImage: `url(/vijay-palace-photos/rajvant-palace-resort.jpg)` }}
+                    >
+                      <div className="absolute inset-0 bg-heritage-royal/10 group-hover:bg-heritage-royal/20 transition-royal"></div>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4 text-yellow-500" />
-                        {hotel.rating}
+                    
+                    <div className="absolute top-4 right-4">
+                      <Badge variant="outline" className="bg-heritage-royal text-heritage-cream border-heritage-royal">
+                        {hotel.category}
+                      </Badge>
+                    </div>
+                    
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="flex items-center gap-2 text-white bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2">
+                        <Star className="w-4 h-4 text-yellow-400" />
+                        <span className="font-medium">{hotel.rating} Rating</span>
+                        <span className="text-white/70">•</span>
+                        <span className="text-white/90">{hotel.distance} from Vijay Palace</span>
                       </div>
-                      <div className="flex items-center gap-1">
+                    </div>
+                  </div>
+                  
+                  <CardHeader>
+                    <div className="mb-4">
+                      <CardTitle className="text-2xl text-heritage-royal mb-2">{hotel.name}</CardTitle>
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
                         <MapPin className="w-4 h-4" />
-                        {hotel.distance}
+                        {hotel.address}
                       </div>
                     </div>
                   </CardHeader>
                   
-                  <CardContent className="space-y-4">
+                  <CardContent className="space-y-6">
                     <div className="text-center">
-                      <span className="text-2xl font-bold text-heritage-royal">{hotel.price}</span>
+                      <span className="text-3xl font-bold text-heritage-royal">{hotel.price}</span>
+                      <span className="text-muted-foreground ml-2">starting from</span>
                     </div>
                     
                     <div>
-                      <h4 className="font-semibold text-heritage-royal mb-2">Amenities:</h4>
-                      <div className="flex flex-wrap gap-2">
+                      <p className="text-base text-muted-foreground mb-4">{hotel.description}</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-heritage-royal mb-3">Amenities & Services:</h4>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                         {hotel.amenities.map((amenity, i) => (
-                          <Badge key={i} variant="outline" className="text-xs">
+                          <Badge key={i} variant="outline" className="text-xs justify-center">
                             {amenity}
                           </Badge>
                         ))}
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground p-3 bg-heritage-cream/50 rounded-lg">
                       <Phone className="w-4 h-4" />
-                      {hotel.contact}
+                      <span className="font-medium">Contact:</span> {hotel.contact}
                     </div>
                     
-                    <div className="flex gap-2">
-                      <Button variant="heritage" size="sm" className="flex-1">
-                        Contact Hotel
-                      </Button>
-                      <Button variant="palace" size="sm">
-                        <Phone className="w-4 h-4" />
+                    <div>
+                      <h4 className="font-semibold text-heritage-royal mb-3">Booking Options:</h4>
+                      <div className="space-y-3">
+                        {hotel.bookingOptions.map((option, i) => (
+                          <div key={i} className="p-3 border border-heritage-stone/20 rounded-lg">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <h5 className="font-medium text-heritage-royal">{option.name}</h5>
+                                <p className="text-sm text-muted-foreground">{option.description}</p>
+                                {option.contact && (
+                                  <p className="text-sm text-muted-foreground mt-1">
+                                    <Phone className="w-3 h-3 inline mr-1" />
+                                    {option.contact}
+                                  </p>
+                                )}
+                              </div>
+                              {option.link && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => window.open(option.link, '_blank')}
+                                >
+                                  Book Online
+                                </Button>
+                              )}
+                              {!option.link && (
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => window.open(`tel:${option.contact}`, '_self')}
+                                >
+                                  Call Now
+                                </Button>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-3">
+                      <Button 
+                        variant="palace" 
+                        size="lg" 
+                        className="flex-1"
+                        onClick={() => window.open(hotel.googleMapsLink, '_blank')}
+                      >
+                        <MapPin className="w-4 h-4 mr-2" />
+                        Get Directions
                       </Button>
                     </div>
                   </CardContent>
@@ -450,127 +512,82 @@ const Visit = () => {
                       {attraction.description}
                     </CardDescription>
                     
-                    <div className="flex gap-2">
-                      <Button variant="heritage" size="sm">
-                        <MapPin className="w-4 h-4" />
-                        Get Directions
-                      </Button>
-                      <Button variant="palace" size="sm">
-                        Learn More
-                      </Button>
-                    </div>
+                     <div className="flex gap-2">
+                       <Button 
+                         variant="heritage" 
+                         size="sm"
+                         onClick={() => {
+                           try {
+                             // Try the direct method first
+                             window.open(attraction.googleMapsLink, '_blank', 'noopener,noreferrer');
+                           } catch (error) {
+                             // Fallback method
+                             const link = document.createElement('a');
+                             link.href = attraction.googleMapsLink;
+                             link.target = '_blank';
+                             link.rel = 'noopener noreferrer';
+                             document.body.appendChild(link);
+                             link.click();
+                             document.body.removeChild(link);
+                           }
+                         }}
+                       >
+                         <MapPin className="w-4 h-4" />
+                         Get Directions
+                       </Button>
+                       <Dialog>
+                         <DialogTrigger asChild>
+                           <Button variant="palace" size="sm">
+                             Learn More
+                           </Button>
+                         </DialogTrigger>
+                         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                           <DialogHeader>
+                             <DialogTitle className="text-heritage-royal text-xl">{attraction.name}</DialogTitle>
+                           </DialogHeader>
+                           <div className="space-y-4">
+                             <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                               <MapPin className="w-4 h-4" />
+                               {attraction.distance} from Vijay Palace
+                               <Badge variant="outline" className="ml-2">{attraction.category}</Badge>
+                             </div>
+                             <div className="text-base text-muted-foreground whitespace-pre-line leading-relaxed">
+                               {attraction.detailedInfo}
+                             </div>
+                             <div className="flex gap-2 pt-4">
+                               <Button 
+                                 variant="heritage" 
+                                 size="sm"
+                                 onClick={() => {
+                                   try {
+                                     // Try the direct method first
+                                     window.open(attraction.googleMapsLink, '_blank', 'noopener,noreferrer');
+                                   } catch (error) {
+                                     // Fallback method
+                                     const link = document.createElement('a');
+                                     link.href = attraction.googleMapsLink;
+                                     link.target = '_blank';
+                                     link.rel = 'noopener noreferrer';
+                                     document.body.appendChild(link);
+                                     link.click();
+                                     document.body.removeChild(link);
+                                   }
+                                 }}
+                               >
+                                 <MapPin className="w-4 h-4 mr-2" />
+                                 Get Directions
+                               </Button>
+                             </div>
+                           </div>
+                         </DialogContent>
+                       </Dialog>
+                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </TabsContent>
 
-          {/* Trip Planning */}
-          <TabsContent value="planning" className="space-y-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-heritage-royal mb-4">Plan Your Perfect Visit</h2>
-              <p className="text-muted-foreground">Essential information and tips for an unforgettable experience</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="bg-card/80 backdrop-blur-sm border-heritage-stone/20">
-                <CardHeader>
-                  <CardTitle className="text-heritage-royal flex items-center gap-2">
-                    <Car className="w-5 h-5" />
-                    Getting There
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold mb-2">By Air</h4>
-                    <p className="text-sm text-muted-foreground">Vadodara Airport (85 km) - Regular flights from major cities</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">By Train</h4>
-                    <p className="text-sm text-muted-foreground">Rajpipla Railway Station (8 km) - Connected to major routes</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-2">By Road</h4>
-                    <p className="text-sm text-muted-foreground">Well-connected via NH53. Taxi and bus services available from Rajpipla</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card/80 backdrop-blur-sm border-heritage-stone/20">
-                <CardHeader>
-                  <CardTitle className="text-heritage-royal flex items-center gap-2">
-                    <Shield className="w-5 h-5" />
-                    Important Guidelines
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-start gap-2">
-                    <Camera className="w-4 h-4 mt-1 text-heritage-terracotta flex-shrink-0" />
-                    <p className="text-sm">Photography allowed with camera fee (₹200)</p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Users className="w-4 h-4 mt-1 text-heritage-terracotta flex-shrink-0" />
-                    <p className="text-sm">Group discounts available for 10+ visitors</p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Shield className="w-4 h-4 mt-1 text-heritage-terracotta flex-shrink-0" />
-                    <p className="text-sm">Security check required at entrance</p>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Clock className="w-4 h-4 mt-1 text-heritage-terracotta flex-shrink-0" />
-                    <p className="text-sm">Allow 2-3 hours for complete visit</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card/80 backdrop-blur-sm border-heritage-stone/20">
-                <CardHeader>
-                  <CardTitle className="text-heritage-royal">Best Time to Visit</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                    <h4 className="font-semibold text-blue-800">Winter (Oct-Mar)</h4>
-                    <p className="text-sm text-blue-700">Perfect weather, ideal for photography and outdoor exploration</p>
-                  </div>
-                  <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                    <h4 className="font-semibold text-yellow-800">Summer (Apr-Jun)</h4>
-                    <p className="text-sm text-yellow-700">Early morning visits recommended, extended hours available</p>
-                  </div>
-                  <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                    <h4 className="font-semibold text-green-800">Monsoon (Jul-Sep)</h4>
-                    <p className="text-sm text-green-700">Lush gardens, fewer crowds, special monsoon photography tours</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card/80 backdrop-blur-sm border-heritage-stone/20">
-                <CardHeader>
-                  <CardTitle className="text-heritage-royal flex items-center gap-2">
-                    <Mail className="w-5 h-5" />
-                    Contact Information
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <Phone className="w-4 h-4 text-heritage-terracotta" />
-                    <span className="text-sm">+91 2642 220000</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Mail className="w-4 h-4 text-heritage-terracotta" />
-                    <span className="text-sm">info@vijaypalace-rajpipla.com</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-heritage-terracotta" />
-                    <span className="text-sm">www.vijaypalace-rajpipla.com</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <MapPin className="w-4 h-4 mt-1 text-heritage-terracotta flex-shrink-0" />
-                    <span className="text-sm">Vijay Palace, Rajpipla, Narmada District, Gujarat 393145</span>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
         </Tabs>
       </div>
     </div>
