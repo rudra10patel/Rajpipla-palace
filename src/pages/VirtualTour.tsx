@@ -74,60 +74,8 @@ const VirtualTour = () => {
       {/* Main Content */}
       <section className="py-8 lg:py-12">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
-          <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
-            {/* Palace Info Card */}
-            <div className="lg:col-span-1">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-foreground">Vijay Palace</h2>
-                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                  {isMobile ? <Smartphone className="w-4 h-4" /> : <Monitor className="w-4 h-4" />}
-                  <span>{isMobile ? 'Mobile' : 'Desktop'} View</span>
-          </div>
-        </div>
-
-              <Card className="p-4 lg:p-6">
-                <div className="flex items-start space-x-4 mb-4">
-                  <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-heritage-royal to-heritage-gold rounded-lg flex items-center justify-center text-white font-bold text-lg lg:text-xl">
-                    VP
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-foreground mb-2 text-lg lg:text-xl">{vijayPalace.name}</h3>
-                    <div className="flex items-center text-sm lg:text-base text-muted-foreground mb-1">
-                      <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />
-                      <span className="truncate">{vijayPalace.location}</span>
-                    </div>
-                    <div className="flex items-center text-sm lg:text-base text-muted-foreground mb-2">
-                      <Calendar className="w-4 h-4 mr-2 flex-shrink-0" />
-                      <span>Est. {vijayPalace.established}</span>
-                    </div>
-                    <Badge className="bg-heritage-gold text-heritage-royal text-sm">
-                      360° Tour Available
-                    </Badge>
-                  </div>
-                </div>
-                
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Duration</span>
-                    <span className="text-sm font-medium text-foreground">{vijayPalace.duration}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Views</span>
-                    <span className="text-sm font-medium text-foreground">{vijayPalace.views}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Rating</span>
-                    <div className="flex items-center">
-                      <Star className="w-4 h-4 text-heritage-gold mr-1" />
-                      <span className="text-sm font-medium text-foreground">{vijayPalace.rating}</span>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-                </div>
-                
-            {/* Virtual Tour Viewer */}
-            <div className="lg:col-span-2">
+          {/* Virtual Tour Viewer */}
+          <div className="w-full">
               <Card className="overflow-hidden">
                 {/* Tour Player */}
                 <div ref={viewerRef} className={`relative ${isMobile ? 'h-64' : 'h-96'} bg-gradient-to-br from-heritage-royal/20 to-heritage-gold/20 flex items-center justify-center`}>
@@ -295,7 +243,6 @@ const VirtualTour = () => {
                   </ul>
                 </Card>
               </div>
-            </div>
           </div>
         </div>
       </section>

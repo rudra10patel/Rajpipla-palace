@@ -77,7 +77,7 @@ export const Footer = () => {
         <div className="border-t border-heritage-cream/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-heritage-cream/70 text-sm">
-              © 2024 Rajpipla Palace Digital Heritage Platform. All rights reserved.
+              © 2025 Rajpipla Palace Digital Heritage Platform. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Privacy Policy</a>
