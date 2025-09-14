@@ -54,12 +54,12 @@ export const HeroSection = () => {
               <div className="text-heritage-cream/80 group-hover:text-heritage-cream transition-colors">Years of Dynasty</div>
             </div>
             <div className="group hover:scale-105 transition-all duration-300">
-              <div className="text-3xl font-bold text-heritage-gold mb-2 group-hover:text-heritage-gold/80 transition-colors">11</div>
-              <div className="text-heritage-cream/80 group-hover:text-heritage-cream transition-colors">Royal Bedrooms</div>
+              <div className="text-3xl font-bold text-heritage-gold mb-2 group-hover:text-heritage-gold/80 transition-colors">7</div>
+              <div className="text-heritage-cream/80 group-hover:text-heritage-cream transition-colors">Acre Complex</div>
             </div>
             <div className="group hover:scale-105 transition-all duration-300">
-              <div className="text-3xl font-bold text-heritage-gold mb-2 group-hover:text-heritage-gold/80 transition-colors">1000+</div>
-              <div className="text-heritage-cream/80 group-hover:text-heritage-cream transition-colors">Teak Doors & Windows</div>
+              <div className="text-3xl font-bold text-heritage-gold mb-2 group-hover:text-heritage-gold/80 transition-colors">1915</div>
+              <div className="text-heritage-cream/80 group-hover:text-heritage-cream transition-colors">Palace Built</div>
             </div>
           </div>
         </div>

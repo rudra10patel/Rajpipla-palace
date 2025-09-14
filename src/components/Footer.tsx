@@ -63,11 +63,11 @@ export const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-heritage-gold flex-shrink-0" />
-                <span className="text-heritage-cream/70 text-sm">+91 98765 43210</span>
+                <span className="text-heritage-cream/70 text-sm">+91 (02640) 220345, 220973</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-heritage-gold flex-shrink-0" />
-                <span className="text-heritage-cream/70 text-sm">info@rajpipla-heritage.com</span>
+                <span className="text-heritage-cream/70 text-sm">intrust@rajpiplaroyalmuseum.com</span>
               </div>
             </div>
           </div>
