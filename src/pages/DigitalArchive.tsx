@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { 
   Calendar, 
   Image, 
@@ -28,7 +27,6 @@ import { timelineEvents, getTimelineByType, getTimelineStats, type TimelineEvent
 
 
 const DigitalArchive = () => {
-  useScrollToTop();
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
@@ -120,7 +118,7 @@ const DigitalArchive = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle pt-20 page-container">
+    <div className="min-h-screen bg-gradient-subtle pt-20">
       <div className="container mx-auto px-6 py-12">
         {/* Header */}
         <div className="text-center mb-12">

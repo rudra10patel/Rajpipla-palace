@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, ExternalLink, Play, Loader2, Smartphone, Monitor, Tablet, Eye, Clock, Users, Star, Maximize2, Volume2, Camera } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { useNavigate } from "react-router-dom";
-import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const vijayPalace = {
     id: 1,
@@ -24,7 +23,6 @@ const vijayPalace = {
 };
 
 const VirtualTour = () => {
-  useScrollToTop();
   const [isLoading, setIsLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
@@ -55,7 +53,7 @@ const VirtualTour = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background page-container">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* Hero Section */}
