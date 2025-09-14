@@ -16,6 +16,7 @@ const vijayPalace = {
   significance: "Former royal residence of the Gohil dynasty, now a heritage site preserving centuries of royal history and culture",
   festivals: ["Navratri", "Diwali", "Holi", "Heritage Festival"],
   tourUrl: "https://www.google.com/maps/embed?pb=!4v1757611286269!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRDR0WXFNVHc.!2m2!1d21.87151329014791!2d73.50305328539163!3f359.93950069039767!4f0!5f0.7820865974627469",
+  googleMapsLink: "https://www.google.com/maps/place/Vijay+Palace,+Rajpipla,+Gujarat,+India/@21.8715133,73.5030533,17z/data=!3m1!4b1!4m6!3m5!1s0x396000d5e9f6e6f5:0x762c20e116ffeb27!8m2!3d21.8715133!4d73.5030533!16s%2Fg%2F11btstyffc",
   highlights: ["Architectural Beauty", "Cultural Heritage", "Historical Significance", "Heritage Museum", "Palace Gardens"],
   duration: "30 min",
   views: "12.5K",
@@ -93,7 +94,7 @@ const VirtualTour = () => {
                       referrerPolicy="no-referrer-when-downgrade"
                       title={`${vijayPalace.name} 360° Tour`}
                       onLoad={() => setIsLoading(false)}
-                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation allow-presentation"
+                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation allow-presentation allow-popups-to-escape-sandbox"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                       frameBorder="0"
                       scrolling="no"

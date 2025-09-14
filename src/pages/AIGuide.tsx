@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChatInterface } from "@/components/ChatInterface";
+import { AITest } from "@/components/AITest";
 import { 
   MessageCircle, 
   Send, 
@@ -68,6 +69,11 @@ const AIGuide = () => {
               Ask a Question
             </Button>
           </div>
+        </div>
+
+        {/* AI Test Component - Remove after debugging */}
+        <div className="mb-8">
+          <AITest />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

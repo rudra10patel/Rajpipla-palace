@@ -86,7 +86,7 @@ const LoadingSpinner = () => {
             {loadingText}
           </h2>
           <p className="text-gray-300 text-sm">
-            Preparing your journey through 200+ years of heritage
+            Preparing your journey through 100+ years of heritage
           </p>
         </div>
 

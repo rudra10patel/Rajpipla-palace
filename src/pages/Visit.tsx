@@ -26,7 +26,7 @@ const visitInfo = {
   hours: {
     summer: "9:00 AM - 6:00 PM (April - September)",
     winter: "9:30 AM - 5:30 PM (October - March)",
-    closed: "Mondays (except holidays)"
+    closed: ""
   },
   entry: {
     adult: "₹100",
@@ -360,10 +360,6 @@ const Visit = () => {
                     <p className="text-blue-700">{visitInfo.hours.winter}</p>
                   </div>
                   
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                    <h4 className="font-semibold text-red-800 mb-2">Closed</h4>
-                    <p className="text-red-700">{visitInfo.hours.closed}</p>
-                  </div>
                   
                   <div className="p-4 bg-heritage-royal/10 border border-heritage-royal/20 rounded-lg">
                     <h4 className="font-semibold text-heritage-royal mb-2">Visit Guidelines</h4>

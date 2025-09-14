@@ -126,7 +126,7 @@ const DigitalArchive = () => {
             Vijay Palace Digital Archive
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Explore 200+ years of Vijay Palace's rich history and cultural significance through our comprehensive digital archive. 
+            Explore 100+ years of Vijay Palace's rich history and cultural significance through our comprehensive digital archive. 
             Discover architectural evolution, royal heritage, and cultural preservation efforts.
           </p>
         </div>

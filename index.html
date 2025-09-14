@@ -3,26 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/palaces-favicon.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/palaces-favicon.png" />
     <link rel="apple-touch-icon" href="/palaces-favicon.png" />
+    
+    <!-- SEO Meta Tags -->
     <title>Rajpipla Palace - Digital Heritage Preservation Platform</title>
-    <meta name="description" content="Experience the magnificent Rajpipla Palace through immersive virtual tours and community-driven heritage preservation. Explore 300+ years of royal history." />
+    <meta name="description" content="Experience the magnificent Rajpipla Palace through immersive virtual tours and community-driven heritage preservation. Explore 600+ years of royal history." />
     <meta name="author" content="Rajpipla Heritage Foundation" />
-    <meta name="keywords" content="Rajpipla Palace, heritage, virtual tour, royal history, tourism, Gujarat, digital preservation" />
+    <meta name="keywords" content="Rajpipla Palace, heritage, virtual tour, royal history, tourism, Gujarat, digital preservation, Gohil dynasty" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#1e40af" />
 
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Rajpipla Palace - Digital Heritage Preservation Platform" />
     <meta property="og:description" content="Experience the magnificent Rajpipla Palace through immersive virtual tours and community-driven heritage preservation." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/rajpipla-palace-hero.jpg" />
+    <meta property="og:url" content="https://rajpipla-palace.com" />
+    <meta property="og:site_name" content="Rajpipla Palace" />
 
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@rajpipla_heritage" />
     <meta name="twitter:image" content="/rajpipla-palace-hero.jpg" />
+    <meta name="twitter:title" content="Rajpipla Palace - Digital Heritage Platform" />
+    <meta name="twitter:description" content="Explore 600+ years of royal history through immersive digital experiences." />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    <link rel="preload" href="/rajpipla-palace-hero.jpg" as="image" />
+    
+    <!-- DNS Prefetch for External Resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//generativelanguage.googleapis.com" />
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Fallback for users with JavaScript disabled -->
+    <noscript>
+      <div style="text-align: center; padding: 2rem; font-family: Arial, sans-serif;">
+        <h1>JavaScript Required</h1>
+        <p>This application requires JavaScript to function properly. Please enable JavaScript in your browser settings.</p>
+        <p>For more information about Rajpipla Palace, please visit our official website.</p>
+      </div>
+    </noscript>
   </body>
 </html>

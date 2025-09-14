@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Initialize Gemini AI
-const genAI = new GoogleGenerativeAI('AIzaSyASb4jrGs-Q-dKcFSfbDLLP5A5-p2dpMw0');
+// Initialize Gemini AI with environment variable
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || '');
 const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 // System prompt for Rajpipla Palace AI Guide
@@ -30,6 +30,14 @@ export class GeminiChatService {
   private conversationHistory: ChatMessage[] = [];
 
   async sendMessage(userMessage: string): Promise<string> {
+    // Validate API key
+    if (!import.meta.env.VITE_GEMINI_API_KEY) {
+      console.error('API key not configured');
+      throw new Error('API key not configured. Please check your environment variables.');
+    }
+
+    console.log('Sending message to Gemini:', userMessage);
+    
     try {
       // Add user message to history
       const userMsg: ChatMessage = {
@@ -42,11 +50,19 @@ export class GeminiChatService {
 
       // Build conversation context
       const conversationContext = this.buildConversationContext();
+      console.log('Conversation context built, length:', conversationContext.length);
       
-      // Generate response
-      const result = await model.generateContent(conversationContext);
+      // Generate response with timeout
+      const result = await Promise.race([
+        model.generateContent(conversationContext),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Request timeout after 30 seconds')), 30000)
+        )
+      ]) as any;
+      
       const response = await result.response;
       const aiMessage = response.text();
+      console.log('Received response from Gemini:', aiMessage);
 
       // Add AI response to history
       const aiMsg: ChatMessage = {
@@ -60,6 +76,18 @@ export class GeminiChatService {
       return aiMessage;
     } catch (error) {
       console.error('Error calling Gemini API:', error);
+      
+      // Provide more specific error messages
+      if (error instanceof Error) {
+        if (error.message.includes('API key')) {
+          throw new Error('Invalid API key. Please check your configuration.');
+        } else if (error.message.includes('timeout')) {
+          throw new Error('Request timed out. Please try again.');
+        } else if (error.message.includes('quota')) {
+          throw new Error('API quota exceeded. Please try again later.');
+        }
+      }
+      
       throw new Error('Sorry, I encountered an error. Please try again.');
     }
   }

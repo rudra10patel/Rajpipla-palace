@@ -369,7 +369,7 @@ const SpiralTimeline = () => {
             Heritage Timeline
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto">
-            Journey through 200+ years of Vijay Palace's rich history in an immersive 3D spiral experience
+            Journey through 100+ years of Vijay Palace's rich history in an immersive 3D spiral experience
           </p>
           
           {/* Controls */}

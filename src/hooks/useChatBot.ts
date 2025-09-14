@@ -17,14 +17,22 @@ export const useChatBot = () => {
   const sendMessage = useCallback(async (content: string) => {
     if (!content.trim() || isLoading) return;
 
+    console.log('useChatBot: Sending message:', content);
     setIsLoading(true);
     setError(null);
 
     try {
       const response = await geminiChatService.sendMessage(content);
-      setMessages(prev => [...prev, ...geminiChatService.getChatHistory().slice(-2)]);
+      console.log('useChatBot: Received response:', response);
+      
+      // Get the latest messages from the service
+      const chatHistory = geminiChatService.getChatHistory();
+      console.log('useChatBot: Chat history:', chatHistory);
+      
+      setMessages(prev => [...prev, ...chatHistory.slice(-2)]);
       scrollToBottom();
     } catch (err) {
+      console.error('useChatBot: Error occurred:', err);
       setError(err instanceof Error ? err.message : 'An error occurred');
       setIsConnected(false);
     } finally {
