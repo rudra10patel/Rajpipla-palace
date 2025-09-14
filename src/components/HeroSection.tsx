@@ -11,7 +11,7 @@ export const HeroSection = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-heritage-royal/80 via-heritage-royal/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-heritage-royal/0 via-heritage-royal/0 to-transparent"></div>
       </div>
       
       {/* Floating Decorative Elements */}

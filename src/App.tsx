@@ -9,7 +9,6 @@ import VirtualTour from "./pages/VirtualTour";
 import DigitalArchive from "./pages/DigitalArchive";
 import AudioTour from "./pages/AudioTour";
 import Visit from "./pages/Visit";
-import Community from "./pages/Community";
 import AIGuide from "./pages/AIGuide";
 import NotFound from "./pages/NotFound";
 
@@ -28,7 +27,6 @@ const App = () => (
           <Route path="/archive" element={<DigitalArchive />} />
           <Route path="/audio-tour" element={<AudioTour />} />
           <Route path="/visit" element={<Visit />} />
-          <Route path="/community" element={<Community />} />
           <Route path="/ai-guide" element={<AIGuide />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

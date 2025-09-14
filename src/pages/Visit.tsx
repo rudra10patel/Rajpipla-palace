@@ -120,12 +120,86 @@ const guidedTours = [
 
 const nearbyAttractions = [
   {
+    name: "Barakhadi Waterfall",
+    distance: "13 km",
+    description: "Beautiful natural waterfall perfect for a refreshing day trip from Rajpipla",
+    category: "Nature",
+    googleMapsLink: "https://www.google.com/maps/search/Barakhadi+Waterfall,+Rajpipla,+Gujarat,+India",
+    detailedInfo: `Barakhadi Waterfall is one of the most accessible and beautiful waterfalls near Rajpipla, making it a perfect destination for a day trip. Located just 13 km from the palace, this natural wonder offers a refreshing escape into nature.
+
+Key Highlights:
+
+💧 Natural Beauty: A picturesque waterfall surrounded by lush greenery and rocky terrain.
+
+🏞 Scenic Views: Perfect spot for photography and nature appreciation.
+
+🚶 Easy Access: Well-maintained paths make it accessible for visitors of all ages.
+
+🌿 Nature Walk: Short trek through forested areas to reach the waterfall.
+
+📸 Photography: Excellent opportunities for nature photography and family pictures.
+
+📍 Best Time to Visit: Monsoon season (July-September) when the waterfall is at its most spectacular, or post-monsoon (October-November) for pleasant weather.
+
+⚠️ Safety Note: Be cautious during monsoon season due to increased water flow.`
+  },
+  {
+    name: "Harsiddhi Mataji Temple",
+    distance: "2 km",
+    description: "Sacred temple dedicated to Goddess Harsiddhi, a significant religious site in Rajpipla",
+    category: "Spiritual",
+    googleMapsLink: "https://www.google.com/maps/search/Harsiddhi+Mataji+Temple,+Rajpipla,+Gujarat,+India",
+    detailedInfo: `The Harsiddhi Mataji Temple is one of the most revered religious sites in Rajpipla, dedicated to Goddess Harsiddhi. This ancient temple holds great spiritual significance and attracts devotees from across the region.
+
+Key Highlights:
+
+🛕 Sacred Site: Ancient temple with deep spiritual and cultural significance.
+
+🙏 Religious Importance: Major pilgrimage site for devotees of Goddess Harsiddhi.
+
+🏛 Architecture: Traditional temple architecture reflecting local heritage.
+
+🎭 Festivals: Special celebrations during Navratri and other Hindu festivals.
+
+🌅 Peaceful Atmosphere: Serene environment perfect for meditation and prayer.
+
+📍 Best Time to Visit: Early morning or evening for peaceful darshan, especially during festivals.
+
+🎪 Special Events: Navratri celebrations are particularly grand at this temple.`
+  },
+  {
+    name: "Vishal Khadi Eco Tourism Centre",
+    distance: "25 km",
+    description: "Eco-friendly tourism center offering boating, trekking, and nature activities",
+    category: "Eco Tourism",
+    googleMapsLink: "https://www.google.com/maps/search/Vishal+Khadi+Eco+Tourism+Centre,+Dediapada,+Gujarat,+India",
+    detailedInfo: `Vishal Khadi Eco Tourism Centre is a perfect destination for nature lovers and adventure enthusiasts. Located 25 km from Rajpipla, this eco-tourism center offers various activities in a sustainable and environmentally friendly setting.
+
+Key Highlights:
+
+🌿 Eco-Friendly: Committed to sustainable tourism and environmental conservation.
+
+🚣 Boating: Enjoy peaceful boat rides on the water body.
+
+🥾 Trekking: Guided nature walks and trekking trails through forested areas.
+
+🏕️ Accommodation: Eco-friendly stay options for overnight visits.
+
+📚 Education: Learn about local flora, fauna, and conservation efforts.
+
+🎯 Activities: Bird watching, nature photography, and environmental awareness programs.
+
+📍 Best Time to Visit: October to March for pleasant weather and better wildlife sightings.
+
+💡 Tip: Book activities in advance, especially during peak season.`
+  },
+  {
     name: "Shoolpaneshwar Wildlife Sanctuary",
-    distance: "45 km",
+    distance: "50 km",
     description: "Rich biodiversity and wildlife spotting opportunities near Rajpipla",
     category: "Nature",
-    googleMapsLink: "https://www.google.com/maps/place/Shoolpaneshwar+Wildlife+Sanctuary,+Gujarat,+India",
-    detailedInfo: `Located in the Narmada district of Gujarat, Shoolpaneshwar Wildlife Sanctuary spreads across over 600 sq. km of lush deciduous forests, rolling hills, and rivers. Nestled close to the Statue of Unity and the Sardar Sarovar Dam, it is a prime eco-tourism spot combining nature, wildlife, and culture.
+    googleMapsLink: "https://www.google.com/maps/search/Shoolpaneshwar+Wildlife+Sanctuary,+Narmada+District,+Gujarat,+India",
+    detailedInfo: `Located 50 km from Rajpipla, Shoolpaneshwar Wildlife Sanctuary spreads across over 600 sq. km of lush deciduous forests, rolling hills, and rivers. This sanctuary is a prime eco-tourism spot combining nature, wildlife, and culture.
 
 Key Highlights:
 
@@ -143,10 +217,10 @@ Best Time to Visit: October to March, when the weather is pleasant and wildlife 
   },
   {
     name: "Sardar Sarovar Dam",
-    distance: "52 km",
+    distance: "60 km",
     description: "One of India's largest dams with spectacular views and visitor center",
     category: "Engineering Marvel",
-    googleMapsLink: "https://www.google.com/maps/place/Sardar+Sarovar+Dam,+Kevadia,+Gujarat,+India",
+    googleMapsLink: "https://www.google.com/maps/search/Sardar+Sarovar+Dam,+Kevadia,+Gujarat,+India",
     detailedInfo: `The Sardar Sarovar Dam, built on the mighty Narmada River in Gujarat, is one of the largest dams in India and a key landmark of modern engineering. Standing 163 meters tall and stretching 1.2 km in length, it provides water, irrigation, hydroelectric power, and drinking water to millions across Gujarat, Madhya Pradesh, Maharashtra, and Rajasthan.
 
 Key Highlights:
@@ -165,10 +239,10 @@ Best Time to Visit: Monsoon and post-monsoon months (July–October) when the da
   },
   {
     name: "Statue of Unity",
-    distance: "48 km",
+    distance: "110 km",
     description: "World's tallest statue of Sardar Vallabhbhai Patel with museum and attractions",
     category: "Monument",
-    googleMapsLink: "https://www.google.com/maps/place/Statue+of+Unity,+Kevadia,+Gujarat,+India",
+    googleMapsLink: "https://www.google.com/maps/search/Statue+of+Unity,+Kevadia,+Gujarat,+India",
     detailedInfo: `The Statue of Unity, dedicated to India's Iron Man Sardar Vallabhbhai Patel, is the world's tallest statue at a height of 182 meters. Located on the banks of the Narmada River near Kevadia (Ekta Nagar), Gujarat, it has become one of India's most iconic tourist destinations.
 
 Key Highlights:
@@ -184,50 +258,6 @@ Key Highlights:
 🛣 Connectivity: Well-connected by road, rail, and air with Ekta Nagar Railway Station nearby.
 
 Best Time to Visit: October to March for pleasant weather; evenings are ideal to enjoy the laser show.`
-  },
-  {
-    name: "River Narmada Ghat",
-    distance: "8 km",
-    description: "Sacred ghats on the holy Narmada river for spiritual experiences",
-    category: "Spiritual",
-    googleMapsLink: "https://www.google.com/maps/search/?api=1&query=Narmada+River+Ghat,+Kevadia,+Gujarat,+India",
-    detailedInfo: `The Narmada River, often called the lifeline of central India, is one of the country's holiest and most picturesque rivers. Flowing through Madhya Pradesh, Maharashtra, and Gujarat before meeting the Arabian Sea, it holds immense spiritual, cultural, and ecological significance. The ghats along the Narmada are popular spots for prayers, festivals, and serene river views.
-
-Key Highlights:
-
-🌊 Sacred River: Considered one of the seven holy rivers of India; devotees believe that a dip in the Narmada purifies the soul.
-
-🛕 Cultural Importance: Famous ghats like Chandika Ghat, Poicha Nilkanth Dham Ghat, and Maheshwar Ghats host daily aarti, rituals, and festivals.
-
-🛶 Peaceful Experience: Boating, evening aarti, and riverside walks offer a spiritual and tranquil escape.
-
-📸 Scenic Beauty: Ghats surrounded by temples, forests, and hills provide stunning views for photography and relaxation.
-
-📍 Nearby Attractions: Statue of Unity, Sardar Sarovar Dam, Shoolpaneshwar Sanctuary, and local temples.
-
-Best Time to Visit: Early mornings and evenings for peaceful river views, especially during festivals like Narmada Jayanti.`
-  },
-  {
-    name: "Narmada River Cruise",
-    distance: "15 km",
-    description: "Scenic boat rides on the holy Narmada river with nature views",
-    category: "Recreation",
-    googleMapsLink: "https://www.google.com/maps/search/?api=1&query=Ekta+Cruise,+Kevadia,+Gujarat,+India",
-    detailedInfo: `The Narmada River Cruise at Ekta Nagar (Kevadia) offers a unique way to experience the beauty of the Statue of Unity and the surrounding landscapes. Sailing on the calm waters of the Narmada, visitors can enjoy breathtaking views of the towering statue, Sardar Sarovar Dam, and lush green hills. The cruise is designed for leisure, sightseeing, and cultural experiences.
-
-Key Highlights:
-
-🚢 Unique Experience: Comfortable boat rides with panoramic views of the Statue of Unity and Narmada River.
-
-🌅 Sunset & Evening Cruises: Stunning views at sunset and illuminated night-time surroundings.
-
-🎶 Entertainment Onboard: Cultural programs, music, and dining options (varies by cruise package).
-
-📸 Photography Spot: Perfect location for memorable clicks of the Statue of Unity from the river.
-
-📍 Nearby Attractions: Valley of Flowers, Jungle Safari, Cactus Garden, and Shoolpaneshwar Sanctuary.
-
-Best Time to Visit: Evening cruises are most popular for sunset views and the night illumination of the Statue of Unity.`
   }
 ];
 
@@ -247,13 +277,6 @@ const Visit = () => {
             Everything you need to know for an unforgettable visit to Vijay Palace in Rajpipla. 
             From visiting hours and guided tours to accommodation and nearby attractions.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="palace" size="xl">
-              <MapPin className="w-5 h-5" />
-              Get Directions
-            </Button>
-          </div>
         </div>
 
         <Tabs defaultValue="hours" className="space-y-8">
