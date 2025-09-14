@@ -131,3 +131,108 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Volume Slider Styles */
+@layer components {
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .slider::-webkit-slider-track {
+    background: hsl(var(--muted));
+    height: 8px;
+    border-radius: 4px;
+  }
+
+  .slider::-webkit-slider-fill-lower {
+    background: hsl(var(--heritage-royal));
+    height: 8px;
+    border-radius: 4px;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: hsl(var(--heritage-royal));
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid hsl(var(--background));
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .slider::-webkit-slider-thumb:hover {
+    background: hsl(var(--heritage-gold));
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+  }
+
+  .slider::-moz-range-track {
+    background: hsl(var(--muted));
+    height: 8px;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .slider::-moz-range-thumb {
+    background: hsl(var(--heritage-royal));
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid hsl(var(--background));
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .slider::-moz-range-thumb:hover {
+    background: hsl(var(--heritage-gold));
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+  }
+
+  /* Firefox specific */
+  .slider::-moz-range-progress {
+    background: hsl(var(--heritage-royal));
+    height: 8px;
+    border-radius: 4px;
+  }
+
+  /* Custom Volume Slider */
+  .volume-slider-track {
+    background: hsl(var(--muted));
+    border-radius: 9999px;
+    height: 8px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .volume-slider-progress {
+    background: hsl(var(--heritage-royal));
+    border-radius: 9999px;
+    height: 100%;
+    transition: width 150ms ease;
+  }
+
+  .volume-slider-thumb {
+    background: hsl(var(--heritage-royal));
+    border: 2px solid hsl(var(--background));
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: all 150ms ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .volume-slider-thumb:hover {
+    background: hsl(var(--heritage-gold));
+    transform: translateY(-50%) scale(1.1);
+  }
+}
