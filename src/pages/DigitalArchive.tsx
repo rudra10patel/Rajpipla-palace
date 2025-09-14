@@ -182,25 +182,6 @@ const DigitalArchive = () => {
           </p>
         </div>
 
-        {/* Archive Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-heritage-royal mb-2">1,294</div>
-            <div className="text-muted-foreground">Digital Items</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-heritage-gold mb-2">200+</div>
-            <div className="text-muted-foreground">Years Covered</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-heritage-terracotta mb-2">8</div>
-            <div className="text-muted-foreground">Collections</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-heritage-royal mb-2">4K</div>
-            <div className="text-muted-foreground">Resolution</div>
-          </div>
-        </div>
 
         <Tabs defaultValue="timeline" className="space-y-8">
           <TabsList className="grid w-full grid-cols-2">
