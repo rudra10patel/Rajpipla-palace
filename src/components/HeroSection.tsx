@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, MapPin, Camera, Crown, Castle, Throne, Flower2 } from "lucide-react";
+import { ArrowRight, Play, MapPin, Camera, Crown, Castle, Star, Flower2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/rajpipla-palace-hero.png";
 
@@ -28,7 +28,7 @@ export const HeroSection = () => {
       
       {/* Upper Right Corner */}
       <div className="absolute top-16 right-8 w-10 h-10 text-heritage-gold/25 animate-float" style={{animationDelay: "3s"}}>
-        <Throne className="w-full h-full" />
+        <Star className="w-full h-full" />
       </div>
       <div className="absolute top-24 right-4 w-8 h-8 text-heritage-gold/20 animate-float" style={{animationDelay: "4s"}}>
         <Crown className="w-full h-full" />
@@ -44,7 +44,7 @@ export const HeroSection = () => {
       
       {/* Lower Right Area */}
       <div className="absolute bottom-32 right-12 w-9 h-9 text-heritage-gold/20 animate-float" style={{animationDelay: "7s"}}>
-        <Throne className="w-full h-full" />
+        <Star className="w-full h-full" />
       </div>
       <div className="absolute bottom-48 right-6 w-7 h-7 text-heritage-gold/25 animate-float" style={{animationDelay: "8s"}}>
         <Crown className="w-full h-full" />
@@ -68,7 +68,7 @@ export const HeroSection = () => {
       
       {/* Center Left */}
       <div className="absolute top-1/2 left-12 w-9 h-9 text-heritage-gold/15 animate-float" style={{animationDelay: "12s"}}>
-        <Throne className="w-full h-full" />
+        <Star className="w-full h-full" />
       </div>
       
       {/* Center Right */}
@@ -86,7 +86,7 @@ export const HeroSection = () => {
         <Castle className="w-full h-full" />
       </div>
       <div className="absolute top-56 right-1/4 w-6 h-6 text-heritage-gold/25 animate-float" style={{animationDelay: "16s"}}>
-        <Throne className="w-full h-full" />
+        <Star className="w-full h-full" />
       </div>
       <div className="absolute bottom-56 left-1/3 w-5 h-5 text-heritage-gold/20 animate-float" style={{animationDelay: "17s"}}>
         <Crown className="w-full h-full" />
