@@ -9,6 +9,7 @@ import { VolumeSlider } from "@/components/VolumeSlider";
 // Import audio files
 import englishAudio from "@/assets/audio/vijay palace.mp3";
 import hindiAudio from "@/assets/audio/Vijay palace hindi.mp3";
+import gujaratiAudio from "@/assets/audio/vijay palace gujarati.mp3";
 
 // Language configuration
 const LANGUAGE_CONFIG = {
@@ -23,6 +24,12 @@ const LANGUAGE_CONFIG = {
     code: 'hi',
     flag: '🇮🇳',
     audioFile: hindiAudio
+  },
+  gu: {
+    name: 'ગુજરાતી (Gujarati)',
+    code: 'gu',
+    flag: '🇮🇳',
+    audioFile: gujaratiAudio
   }
 } as const;
 
@@ -250,7 +257,7 @@ export const AudioTour = () => {
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Experience Vijay Palace through immersive audio guides. 
-              Listen to the palace's rich history and cultural heritage in English or Hindi.
+              Listen to the palace's rich history and cultural heritage in English, Hindi, or Gujarati.
             </p>
           </div>
         </div>
@@ -267,7 +274,7 @@ export const AudioTour = () => {
               <h2 className="text-3xl font-bold text-heritage-royal mb-4">Vijay Palace Complete Audio Tour</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
                 Immerse yourself in the rich history and cultural heritage of Vijay Palace. 
-                Professional narration brings the palace's story to life in both English and Hindi.
+                Professional narration brings the palace's story to life in English, Hindi, and Gujarati.
               </p>
               
               {/* Language Selection */}
@@ -373,7 +380,7 @@ export const AudioTour = () => {
             <Languages className="w-12 h-12 text-heritage-royal mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-2">Multi-Language Support</h3>
             <p className="text-muted-foreground">
-              Listen to the palace tour in English or Hindi with professional narration
+              Listen to the palace tour in English, Hindi, or Gujarati with professional narration
             </p>
           </Card>
           
@@ -405,7 +412,7 @@ export const AudioTour = () => {
               architecture and royal lifestyle to the cultural significance and historical importance, 
               this tour covers every aspect of this heritage treasure. Whether you're interested in 
               the architectural marvels, royal history, or cultural heritage, our professional 
-              audio guides ensure you can enjoy this experience in your preferred language.
+              audio guides ensure you can enjoy this experience in English, Hindi, or Gujarati.
             </p>
           </div>
         </Card>
