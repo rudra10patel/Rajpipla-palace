@@ -10,6 +10,7 @@ import DigitalArchive from "./pages/DigitalArchive";
 import AudioTour from "./pages/AudioTour";
 import Visit from "./pages/Visit";
 import AIGuide from "./pages/AIGuide";
+import Emergency from "./pages/Emergency";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/audio-tour" element={<AudioTour />} />
           <Route path="/visit" element={<Visit />} />
           <Route path="/ai-guide" element={<AIGuide />} />
+          <Route path="/emergency" element={<Emergency />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

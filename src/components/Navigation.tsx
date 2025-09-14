@@ -10,6 +10,7 @@ const navigation = [
   { name: "Audio Tour", href: "/audio-tour" },
   { name: "Visit", href: "/visit" },
   { name: "AI Guide", href: "/ai-guide" },
+  { name: "Emergency", href: "/emergency" },
 ];
 
 export const Navigation = () => {
