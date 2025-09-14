@@ -159,7 +159,7 @@ const nearbyFacilities = [
 
 export default function Emergency() {
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-gradient-subtle dark:bg-gray-900">
       {/* Header */}
       <div className="bg-heritage-royal text-heritage-cream py-16">
         <div className="container mx-auto px-6 text-center">
@@ -175,27 +175,27 @@ export default function Emergency() {
       <div className="container mx-auto px-6 py-12">
         {/* Urgent Emergency Contacts */}
         <section className="mb-16">
-          <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-8 animate-fade-in">
+          <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-2xl p-8 animate-fade-in">
             <div className="text-center mb-8">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <AlertTriangle className="w-8 h-8 text-red-600" />
-                <h2 className="text-3xl font-bold text-red-800">URGENT EMERGENCY CONTACTS</h2>
+                <h2 className="text-3xl font-bold text-red-800 dark:text-red-200">URGENT EMERGENCY CONTACTS</h2>
                 <AlertTriangle className="w-8 h-8 text-red-600" />
               </div>
-              <p className="text-lg text-red-700 font-medium">
+              <p className="text-lg text-red-700 dark:text-red-300 font-medium">
                 Call these numbers immediately in case of life-threatening emergencies
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white rounded-xl p-6 border-2 border-red-300 hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-red-300 dark:border-red-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Shield className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-red-800 mb-2">POLICE</h3>
+                  <h3 className="text-xl font-bold text-red-800 dark:text-red-200 mb-2">POLICE</h3>
                   <div className="text-3xl font-bold text-red-600 mb-3">100</div>
-                  <p className="text-sm text-gray-600 mb-4">Emergency police assistance</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">Emergency police assistance</p>
                   <Button 
                     className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105"
                     onClick={() => window.open('tel:100', '_self')}
@@ -206,12 +206,12 @@ export default function Emergency() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-6 border-2 border-red-300 hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-red-300 dark:border-red-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Heart className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-red-800 mb-2">AMBULANCE</h3>
+                  <h3 className="text-xl font-bold text-red-800 dark:text-red-200 mb-2">AMBULANCE</h3>
                   <div className="text-3xl font-bold text-red-600 mb-3">108</div>
                   <p className="text-sm text-gray-600 mb-4">Medical emergency & ambulance</p>
                   <Button 
@@ -224,12 +224,12 @@ export default function Emergency() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-6 border-2 border-red-300 hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-red-300 dark:border-red-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <AlertTriangle className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-red-800 mb-2">FIRE</h3>
+                  <h3 className="text-xl font-bold text-red-800 dark:text-red-200 mb-2">FIRE</h3>
                   <div className="text-3xl font-bold text-red-600 mb-3">101</div>
                   <p className="text-sm text-gray-600 mb-4">Fire & rescue services</p>
                   <Button 
@@ -242,12 +242,12 @@ export default function Emergency() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-6 border-2 border-red-300 hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-red-300 dark:border-red-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-red-800 mb-2">WOMEN</h3>
+                  <h3 className="text-xl font-bold text-red-800 dark:text-red-200 mb-2">WOMEN</h3>
                   <div className="text-3xl font-bold text-red-600 mb-3">1091</div>
                   <p className="text-sm text-gray-600 mb-4">Women safety helpline</p>
                   <Button 
@@ -273,15 +273,15 @@ export default function Emergency() {
 
         {/* Emergency Contacts */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-heritage-royal mb-8 text-center animate-fade-in">
+          <h2 className="text-3xl font-bold text-heritage-royal dark:text-heritage-gold mb-8 text-center animate-fade-in">
             Emergency Contacts
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {emergencyContacts.map((contact, index) => (
               <Card 
                 key={index} 
-                className={`group hover:shadow-heritage transition-royal border-heritage-stone/20 bg-card/50 backdrop-blur-sm animate-slide-up ${
-                  contact.priority === 'high' ? 'border-red-200 bg-red-50/50' : ''
+                className={`group hover:shadow-heritage transition-royal border-heritage-stone/20 dark:border-gray-700 bg-card/50 dark:bg-gray-800/50 backdrop-blur-sm animate-slide-up ${
+                  contact.priority === 'high' ? 'border-red-200 dark:border-red-800 bg-red-50/50 dark:bg-red-900/20' : ''
                 }`}
                 style={{animationDelay: `${index * 0.1}s`}}
               >
@@ -300,19 +300,19 @@ export default function Emergency() {
                       {contact.priority === 'high' ? 'URGENT' : 'ASSISTANCE'}
                     </span>
                   </div>
-                  <CardTitle className="text-xl text-heritage-royal group-hover:text-heritage-royal/80 transition-smooth">
+                  <CardTitle className="text-xl text-heritage-royal dark:text-heritage-gold group-hover:text-heritage-royal/80 dark:group-hover:text-heritage-gold/80 transition-smooth">
                     {contact.name}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-heritage-royal" />
-                      <span className="text-lg font-semibold text-heritage-royal">
+                      <Phone className="w-4 h-4 text-heritage-royal dark:text-heritage-gold" />
+                      <span className="text-lg font-semibold text-heritage-royal dark:text-heritage-gold">
                         {contact.number}
                       </span>
                     </div>
-                    <CardDescription className="text-base leading-relaxed">
+                    <CardDescription className="text-base leading-relaxed dark:text-gray-300">
                       {contact.description}
                     </CardDescription>
                     <Button 
@@ -336,14 +336,14 @@ export default function Emergency() {
 
         {/* Emergency Procedures */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-heritage-royal mb-8 text-center animate-fade-in">
+          <h2 className="text-3xl font-bold text-heritage-royal dark:text-heritage-gold mb-8 text-center animate-fade-in">
             Emergency Procedures
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {emergencyProcedures.map((procedure, index) => (
               <Card 
                 key={index} 
-                className="group hover:shadow-heritage transition-royal border-heritage-stone/20 bg-card/50 backdrop-blur-sm animate-slide-up"
+                className="group hover:shadow-heritage transition-royal border-heritage-stone/20 dark:border-gray-700 bg-card/50 dark:bg-gray-800/50 backdrop-blur-sm animate-slide-up"
                 style={{animationDelay: `${index * 0.2}s`}}
               >
                 <CardHeader>
@@ -351,7 +351,7 @@ export default function Emergency() {
                     <div className="p-3 rounded-lg bg-gradient-heritage group-hover:scale-110 transition-royal">
                       <procedure.icon className="w-6 h-6 text-heritage-cream" />
                     </div>
-                    <CardTitle className="text-xl text-heritage-royal group-hover:text-heritage-royal/80 transition-smooth">
+                    <CardTitle className="text-xl text-heritage-royal dark:text-heritage-gold group-hover:text-heritage-royal/80 dark:group-hover:text-heritage-gold/80 transition-smooth">
                       {procedure.title}
                     </CardTitle>
                   </div>
@@ -360,10 +360,10 @@ export default function Emergency() {
                   <ol className="space-y-3">
                     {procedure.steps.map((step, stepIndex) => (
                       <li key={stepIndex} className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-6 h-6 bg-heritage-royal text-heritage-cream rounded-full flex items-center justify-center text-sm font-semibold">
+                        <span className="flex-shrink-0 w-6 h-6 bg-heritage-royal dark:bg-heritage-gold text-heritage-cream rounded-full flex items-center justify-center text-sm font-semibold">
                           {stepIndex + 1}
                         </span>
-                        <span className="text-sm leading-relaxed">{step}</span>
+                        <span className="text-sm leading-relaxed dark:text-gray-300">{step}</span>
                       </li>
                     ))}
                   </ol>
@@ -375,14 +375,14 @@ export default function Emergency() {
 
         {/* Nearby Emergency Facilities */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-heritage-royal mb-8 text-center animate-fade-in">
+          <h2 className="text-3xl font-bold text-heritage-royal dark:text-heritage-gold mb-8 text-center animate-fade-in">
             Nearby Emergency Facilities
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {nearbyFacilities.map((facility, index) => (
               <Card 
                 key={index} 
-                className="group hover:shadow-heritage transition-royal border-heritage-stone/20 bg-card/50 backdrop-blur-sm animate-slide-up"
+                className="group hover:shadow-heritage transition-royal border-heritage-stone/20 dark:border-gray-700 bg-card/50 dark:bg-gray-800/50 backdrop-blur-sm animate-slide-up"
                 style={{animationDelay: `${index * 0.1}s`}}
               >
                 <CardHeader>
@@ -391,10 +391,10 @@ export default function Emergency() {
                       <facility.icon className="w-6 h-6 text-heritage-cream" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg text-heritage-royal group-hover:text-heritage-royal/80 transition-smooth">
+                      <CardTitle className="text-lg text-heritage-royal dark:text-heritage-gold group-hover:text-heritage-royal/80 dark:group-hover:text-heritage-gold/80 transition-smooth">
                         {facility.name}
                       </CardTitle>
-                      <span className="text-sm text-heritage-terracotta font-medium">
+                      <span className="text-sm text-heritage-terracotta dark:text-heritage-gold font-medium">
                         {facility.distance} away
                       </span>
                     </div>
@@ -403,21 +403,21 @@ export default function Emergency() {
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-start gap-2">
-                      <MapPin className="w-4 h-4 text-heritage-royal mt-1" />
-                      <span className="text-sm">{facility.address}</span>
+                      <MapPin className="w-4 h-4 text-heritage-royal dark:text-heritage-gold mt-1" />
+                      <span className="text-sm dark:text-gray-300">{facility.address}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-heritage-royal" />
-                      <span className="text-sm font-medium">{facility.phone}</span>
+                      <Phone className="w-4 h-4 text-heritage-royal dark:text-heritage-gold" />
+                      <span className="text-sm font-medium dark:text-gray-300">{facility.phone}</span>
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-sm text-muted-foreground dark:text-gray-400">
                       <strong>Services:</strong> {facility.services}
                     </div>
                     <div className="flex gap-2">
                       <Button 
                         variant="outline" 
                         size="sm" 
-                        className="flex-1 group-hover:bg-heritage-royal group-hover:text-heritage-cream transition-royal"
+                        className="flex-1 group-hover:bg-heritage-royal dark:group-hover:bg-heritage-gold group-hover:text-heritage-cream transition-royal"
                         onClick={() => {
                           const phoneNumber = facility.phone.replace(/[^\d+]/g, '');
                           window.open(`tel:${phoneNumber}`, '_self');
@@ -429,7 +429,7 @@ export default function Emergency() {
                       <Button 
                         variant="outline" 
                         size="sm" 
-                        className="flex-1 group-hover:bg-heritage-royal group-hover:text-heritage-cream transition-royal"
+                        className="flex-1 group-hover:bg-heritage-royal dark:group-hover:bg-heritage-gold group-hover:text-heritage-cream transition-royal"
                         onClick={() => window.open(facility.directions, '_blank')}
                       >
                         <ExternalLink className="w-4 h-4 mr-2" />
@@ -445,14 +445,14 @@ export default function Emergency() {
 
         {/* Safety Information */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-heritage-royal mb-8 text-center animate-fade-in">
+          <h2 className="text-3xl font-bold text-heritage-royal dark:text-heritage-gold mb-8 text-center animate-fade-in">
             Palace Safety Information
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {safetyInfo.map((info, index) => (
               <Card 
                 key={index} 
-                className="group hover:shadow-heritage transition-royal border-heritage-stone/20 bg-card/50 backdrop-blur-sm animate-slide-up"
+                className="group hover:shadow-heritage transition-royal border-heritage-stone/20 dark:border-gray-700 bg-card/50 dark:bg-gray-800/50 backdrop-blur-sm animate-slide-up"
                 style={{animationDelay: `${index * 0.1}s`}}
               >
                 <CardHeader>
@@ -484,15 +484,15 @@ export default function Emergency() {
 
         {/* Important Notes */}
         <section className="mb-16">
-          <Card className="border-amber-200 bg-amber-50/50 animate-fade-in">
+          <Card className="border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-900/20 animate-fade-in">
             <CardHeader>
-              <CardTitle className="text-xl text-amber-800 flex items-center gap-2">
+              <CardTitle className="text-xl text-amber-800 dark:text-amber-200 flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5" />
                 Important Safety Notes for Rajpipla Palace
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2 text-amber-700">
+              <ul className="space-y-2 text-amber-700 dark:text-amber-300">
                 <li className="flex items-start gap-2">
                   <span className="text-amber-600 mt-1">•</span>
                   <span>Always follow the instructions of palace security and staff during emergencies</span>
@@ -556,7 +556,7 @@ export default function Emergency() {
 
         {/* Quick Actions */}
         <section className="text-center">
-          <h2 className="text-3xl font-bold text-heritage-royal mb-8 animate-fade-in">
+          <h2 className="text-3xl font-bold text-heritage-royal dark:text-heritage-gold mb-8 animate-fade-in">
             Quick Actions
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
