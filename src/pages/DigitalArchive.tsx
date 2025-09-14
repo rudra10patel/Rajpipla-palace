@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -31,6 +31,8 @@ const DigitalArchive = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [rotation, setRotation] = useState(0);
+  const [visibleEvents, setVisibleEvents] = useState<Set<number>>(new Set());
+  const timelineRef = useRef<HTMLDivElement>(null);
 
   const vijayPalacePhotos = [
     "/vijay-palace-photos/front-side-of-rajvant.jpg",
@@ -42,6 +44,31 @@ const DigitalArchive = () => {
   ];
 
   // Display all timeline events without filtering
+
+  // Intersection Observer for one-time fade-in animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            setVisibleEvents(prev => new Set([...prev, index]));
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    const eventElements = timelineRef.current?.querySelectorAll('[data-index]');
+    eventElements?.forEach(el => observer.observe(el));
+
+    return () => {
+      eventElements?.forEach(el => observer.unobserve(el));
+    };
+  }, []);
 
   // Memoized timeline stats
   const timelineStats = useMemo(() => getTimelineStats(), []);
@@ -119,63 +146,116 @@ const DigitalArchive = () => {
             </div>
 
 
-            <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-heritage-gold transform md:-translate-x-1/2"></div>
+            <div ref={timelineRef} className="relative">
+              {/* Animated Timeline Line */}
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 transform md:-translate-x-1/2">
+                <div 
+                  className="w-full bg-gradient-to-b from-heritage-gold via-heritage-royal to-heritage-gold transition-all duration-1000 ease-out"
+                  style={{
+                    height: `${Math.min(100, (visibleEvents.size / timelineEvents.length) * 100)}%`,
+                    opacity: 0.8
+                  }}
+                ></div>
+              </div>
 
-              {timelineEvents.map((event, index) => (
-                <div key={index} className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} mb-12`}>
-                  {/* Timeline Dot */}
-                  <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-heritage-gold rounded-full border-4 border-heritage-cream transform md:-translate-x-1/2 z-10"></div>
+              {timelineEvents.map((event, index) => {
+                const isVisible = visibleEvents.has(index);
+                const delay = index * 200; // Stagger animation delay
+                
+                return (
+                  <div 
+                    key={index} 
+                    data-index={index}
+                    className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} mb-12 transition-all duration-700 ease-out`}
+                    style={{
+                      opacity: isVisible ? 1 : 0,
+                      transform: isVisible 
+                        ? 'translateY(0) scale(1)' 
+                        : `translateY(${index % 2 === 0 ? '30px' : '-30px'}) scale(0.95)`,
+                      transitionDelay: `${delay}ms`
+                    }}
+                  >
+                    {/* Animated Timeline Dot */}
+                    <div 
+                      className={`absolute left-4 md:left-1/2 w-4 h-4 bg-heritage-gold rounded-full border-4 border-heritage-cream transform md:-translate-x-1/2 z-10 transition-all duration-500 ease-out ${
+                        isVisible ? 'scale-100 shadow-lg shadow-heritage-gold/50' : 'scale-0'
+                      }`}
+                      style={{
+                        transitionDelay: `${delay + 300}ms`
+                      }}
+                    ></div>
 
-                  {/* Content */}
-                  <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                    <Card className="group hover:shadow-heritage transition-royal bg-card/80 backdrop-blur-sm border-heritage-stone/20">
-                      <CardHeader>
-                        <div className="flex items-center gap-3 mb-2">
-                          <Badge variant="secondary" className="bg-heritage-royal text-heritage-cream">
-                            {event.year}
-                          </Badge>
-                          <Badge variant="outline">
-                            {event.type}
-                          </Badge>
-                          {event.significance && (
+                    {/* Content */}
+                    <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
+                      <Card 
+                        className={`group hover:shadow-heritage transition-all duration-500 ease-out bg-card/80 backdrop-blur-sm border-heritage-stone/20 ${
+                          isVisible ? 'hover:scale-105 hover:-translate-y-1' : ''
+                        }`}
+                        style={{
+                          transitionDelay: `${delay + 100}ms`
+                        }}
+                      >
+                        <CardHeader>
+                          <div className="flex items-center gap-3 mb-2">
                             <Badge 
-                              variant="outline" 
-                              className={`${
-                                event.significance === 'high' 
-                                  ? 'bg-red-100 text-red-800 border-red-200' 
-                                  : event.significance === 'medium'
-                                  ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
-                                  : 'bg-gray-100 text-gray-800 border-gray-200'
-                              }`}
+                              variant="secondary" 
+                              className="bg-heritage-royal text-heritage-cream transition-all duration-300 ease-out group-hover:scale-110"
                             >
-                              {event.significance}
+                              {event.year}
                             </Badge>
-                          )}
-                        </div>
-                        <CardTitle className="text-xl text-heritage-royal">{event.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <CardDescription className="text-base mb-4">
-                          {event.description}
-                        </CardDescription>
-                        
-                        <div>
-                          <h4 className="text-sm font-semibold text-heritage-royal mb-2">Related Artifacts:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {event.artifacts.map((artifact, i) => (
-                              <Badge key={i} variant="outline" className="text-xs">
-                                {artifact}
+                            <Badge 
+                              variant="outline"
+                              className="transition-all duration-300 ease-out group-hover:bg-heritage-royal/10"
+                            >
+                              {event.type}
+                            </Badge>
+                            {event.significance && (
+                              <Badge 
+                                variant="outline" 
+                                className={`transition-all duration-300 ease-out group-hover:scale-105 ${
+                                  event.significance === 'high' 
+                                    ? 'bg-red-100 text-red-800 border-red-200 hover:bg-red-200' 
+                                    : event.significance === 'medium'
+                                    ? 'bg-yellow-100 text-yellow-800 border-yellow-200 hover:bg-yellow-200'
+                                    : 'bg-gray-100 text-gray-800 border-gray-200 hover:bg-gray-200'
+                                }`}
+                              >
+                                {event.significance}
                               </Badge>
-                            ))}
+                            )}
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                          <CardTitle className="text-xl text-heritage-royal group-hover:text-heritage-royal/90 transition-colors duration-300">
+                            {event.title}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <CardDescription className="text-base mb-4 group-hover:text-muted-foreground/90 transition-colors duration-300">
+                            {event.description}
+                          </CardDescription>
+                          
+                          <div>
+                            <h4 className="text-sm font-semibold text-heritage-royal mb-2">Related Artifacts:</h4>
+                            <div className="flex flex-wrap gap-2">
+                              {event.artifacts.map((artifact, i) => (
+                                <Badge 
+                                  key={i} 
+                                  variant="outline" 
+                                  className="text-xs transition-all duration-300 ease-out hover:bg-heritage-royal/10 hover:scale-105"
+                                  style={{
+                                    transitionDelay: `${delay + 200 + (i * 50)}ms`
+                                  }}
+                                >
+                                  {artifact}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </TabsContent>
 
