@@ -271,7 +271,7 @@ const DigitalArchive = () => {
               <Card className="group hover:shadow-heritage transition-royal bg-card/80 backdrop-blur-sm border-heritage-stone/20 overflow-hidden">
                 <div className="relative">
                   <div 
-                    className="aspect-[16/10] bg-heritage-stone/20 bg-cover bg-center"
+                    className="aspect-[16/10] sm:aspect-[16/10] aspect-[4/3] bg-heritage-stone/20 bg-cover bg-center"
                     style={{ backgroundImage: `url(${vijayPalacePhotos[0]})` }}
                   >
                     <div className="absolute inset-0 bg-heritage-royal/20 group-hover:bg-heritage-royal/40 transition-royal flex items-center justify-center">
@@ -281,12 +281,12 @@ const DigitalArchive = () => {
                             <Eye className="w-6 h-6" />
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-6xl max-h-[90vh] p-0">
+                        <DialogContent className="max-w-6xl max-h-[90vh] p-0 w-[95vw] sm:w-full">
                           <DialogHeader className="p-6 pb-0">
                             <DialogTitle className="text-heritage-royal">Vijay Palace Photo Gallery</DialogTitle>
                           </DialogHeader>
                           <div className="relative p-6">
-                            <div className="flex items-center justify-between mb-4">
+                            <div className="flex flex-col sm:flex-row items-center justify-between mb-4 gap-4">
                               <div className="flex items-center gap-2">
                                 <Button variant="outline" size="sm" onClick={handlePreviousImage}>
                                   ← Previous
@@ -298,7 +298,7 @@ const DigitalArchive = () => {
                                   Next →
                                 </Button>
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="flex flex-wrap items-center gap-2">
                                 <Button variant="outline" size="sm" onClick={handleZoomOut}>
                                   <ZoomOut className="w-4 h-4" />
                                 </Button>
@@ -321,7 +321,7 @@ const DigitalArchive = () => {
                                 </Button>
                               </div>
                             </div>
-                            <div className="flex justify-center items-center bg-gray-100 rounded-lg overflow-hidden" style={{ height: '60vh' }}>
+                            <div className="flex justify-center items-center bg-gray-100 rounded-lg overflow-hidden" style={{ height: '50vh', minHeight: '300px' }}>
                               <img
                                 src={vijayPalacePhotos[currentImageIndex]}
                                 alt={`Vijay Palace ${currentImageIndex + 1}`}
@@ -333,12 +333,12 @@ const DigitalArchive = () => {
                                 draggable={false}
                               />
                             </div>
-                            <div className="flex justify-center mt-4 gap-2">
+                            <div className="flex flex-wrap justify-center mt-4 gap-2">
                               {vijayPalacePhotos.map((photo, index) => (
                                 <div key={index} className="relative group">
                                   <button
                                     onClick={() => setCurrentImageIndex(index)}
-                                    className={`w-16 h-12 rounded border-2 overflow-hidden ${
+                                    className={`w-12 h-9 sm:w-16 sm:h-12 rounded border-2 overflow-hidden ${
                                       index === currentImageIndex 
                                         ? 'border-heritage-royal' 
                                         : 'border-gray-300 hover:border-heritage-royal/50'
@@ -353,13 +353,13 @@ const DigitalArchive = () => {
                                   <Button
                                     variant="heritage"
                                     size="sm"
-                                    className="absolute -top-2 -right-2 w-6 h-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                                    className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-5 h-5 sm:w-6 sm:h-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity"
                                     onClick={(e) => {
                                       e.stopPropagation();
                                       downloadImage(photo, `vijay-palace-${index + 1}.jpg`);
                                     }}
                                   >
-                                    <Download className="w-3 h-3" />
+                                    <Download className="w-2 h-2 sm:w-3 sm:h-3" />
                                   </Button>
                                 </div>
                               ))}
@@ -392,7 +392,7 @@ const DigitalArchive = () => {
                   
                   <div className="space-y-3">
                     <h3 className="text-lg font-semibold text-heritage-royal">Vijay Palace Heritage Collection</h3>
-                    <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                       <div>
                         <span className="font-medium text-heritage-royal">Language:</span> English, Hindi, Gujarati
                       </div>
@@ -426,7 +426,7 @@ const DigitalArchive = () => {
                     <Badge variant="outline" className="text-xs">Cultural Heritage</Badge>
                   </div>
                   
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     <Dialog open={isViewerOpen} onOpenChange={setIsViewerOpen}>
                       <DialogTrigger asChild>
                         <Button variant="heritage" size="lg" className="flex-1">

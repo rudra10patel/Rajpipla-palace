@@ -266,22 +266,25 @@ export const AudioTour = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Main Audio Player */}
         <div className="mb-12">
-          <Card className="p-8 bg-gradient-to-r from-heritage-gold/10 to-heritage-royal/10 border-heritage-gold/20">
+          <Card className="p-4 sm:p-8 bg-gradient-to-r from-heritage-gold/10 to-heritage-royal/10 border-heritage-gold/20">
             <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-gradient-to-br from-heritage-gold to-heritage-royal rounded-full flex items-center justify-center mx-auto mb-6">
-                <Volume2 className="w-10 h-10 text-white" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-heritage-gold to-heritage-royal rounded-full flex items-center justify-center mx-auto mb-6">
+                <Volume2 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
               </div>
-              <h2 className="text-3xl font-bold text-heritage-royal mb-4">Vijay Palace Complete Audio Tour</h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-heritage-royal mb-4">Vijay Palace Complete Audio Tour</h2>
+              <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
                 Immerse yourself in the rich history and cultural heritage of Vijay Palace. 
                 Professional narration brings the palace's story to life in English, Hindi, and Gujarati.
               </p>
               
               {/* Language Selection */}
-              <div className="flex items-center justify-center space-x-3 mb-6">
-                <Languages className="w-5 h-5 text-heritage-royal" />
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-3 mb-6">
+                <div className="flex items-center space-x-2">
+                  <Languages className="w-5 h-5 text-heritage-royal" />
+                  <span className="text-sm font-medium">Language:</span>
+                </div>
                 <Select value={selectedLanguage} onValueChange={handleLanguageChange}>
-                  <SelectTrigger className="w-48">
+                  <SelectTrigger className="w-full sm:w-48">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -300,13 +303,13 @@ export const AudioTour = () => {
             
             {/* Audio Player Controls */}
             <div className="max-w-2xl mx-auto">
-              <div className="flex items-center justify-center space-x-4 mb-6">
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-6">
                 <Button
                   variant="heritage"
                   size="lg"
                   onClick={handlePlayPause}
                   disabled={isLoading}
-                  className="px-8 py-3 text-lg"
+                  className="px-6 sm:px-8 py-3 text-base sm:text-lg w-full sm:w-auto"
                 >
                   {isLoading ? (
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-3" />
@@ -318,24 +321,26 @@ export const AudioTour = () => {
                   {isLoading ? 'Loading...' : isPlaying ? 'Pause Tour' : isPaused ? 'Resume Tour' : 'Start Audio Tour'}
                 </Button>
 
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={handleStop}
-                  disabled={!isPlaying && !isPaused}
-                  className="px-6 py-3"
-                >
-                  Stop
-                </Button>
+                <div className="flex space-x-4 w-full sm:w-auto">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={handleStop}
+                    disabled={!isPlaying && !isPaused}
+                    className="px-4 sm:px-6 py-3 flex-1 sm:flex-none"
+                  >
+                    Stop
+                  </Button>
 
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={handleDownload}
-                  className="px-6 py-3"
-                >
-                  <Download className="w-5 h-5" />
-                </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={handleDownload}
+                    className="px-4 sm:px-6 py-3 flex-1 sm:flex-none"
+                  >
+                    <Download className="w-5 h-5" />
+                  </Button>
+                </div>
               </div>
 
               {/* Volume Controls */}
@@ -375,7 +380,7 @@ export const AudioTour = () => {
         </div>
 
         {/* Features Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           <Card className="p-6 text-center">
             <Languages className="w-12 h-12 text-heritage-royal mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-2">Multi-Language Support</h3>
