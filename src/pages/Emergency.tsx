@@ -50,7 +50,7 @@ const emergencyProcedures = [
     title: "Medical Emergency",
     steps: [
       "Call 108 for ambulance immediately",
-      "Inform palace security at +91 98765 43210",
+      "Inform palace security at +91 XXXXX XXXXX",
       "Stay with the person if safe to do so",
       "Clear the area for emergency personnel",
       "Provide first aid if trained to do so"

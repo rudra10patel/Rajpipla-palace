@@ -24,7 +24,7 @@ export const HeroSection = () => {
           <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-heritage-royal to-heritage-gold bg-clip-text text-transparent drop-shadow-lg animate-title-slide-in" style={{lineHeight: '1.2', paddingBottom: '0.2em'}}>
             Rajpipla Palace
           </h1>
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-light mb-8 text-heritage-royal/60 leading-tight animate-subtitle-slide-in" style={{animationDelay: "0.3s"}}>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-medium mb-8 text-heritage-royal/60 leading-tight animate-subtitle-slide-in" style={{animationDelay: "0.3s"}}>
             Digital Heritage Preservation & Tourism Platform
           </h2>
           <p className="text-lg md:text-xl mb-12 text-white drop-shadow-lg max-w-2xl mx-auto leading-relaxed animate-description-slide-in" style={{animationDelay: "0.6s"}}>
