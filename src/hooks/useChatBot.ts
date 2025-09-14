@@ -57,12 +57,12 @@ export const useChatBot = () => {
       setIsLoading(true);
     };
 
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event: SpeechRecognitionEvent) => {
       const transcript = event.results[0][0].transcript;
       sendMessage(transcript);
     };
 
-    recognition.onerror = (event: any) => {
+    recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
       setError('Voice recognition error: ' + event.error);
       setIsLoading(false);
     };

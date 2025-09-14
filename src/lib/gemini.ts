@@ -58,7 +58,7 @@ export class GeminiChatService {
         new Promise((_, reject) => 
           setTimeout(() => reject(new Error('Request timeout after 30 seconds')), 30000)
         )
-      ]) as any;
+      ]) as { response: { text: () => string } };
       
       const response = await result.response;
       const aiMessage = response.text();

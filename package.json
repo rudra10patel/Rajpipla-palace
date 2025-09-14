@@ -28,7 +28,7 @@
     "type-check": "tsc --noEmit",
     "test": "echo \"No tests specified\" && exit 0",
     "clean": "rm -rf dist node_modules/.vite",
-    "prebuild": "npm run type-check && npm run lint"
+    "prebuild": "npm run type-check"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

@@ -28,7 +28,7 @@ export class SecurityUtils {
     }
     
     return input
-      .replace(/[<>\"'&]/g, '') // Remove HTML/XML characters
+      .replace(/[<>"'&]/g, '') // Remove HTML/XML characters
       .replace(/javascript:/gi, '') // Remove javascript: protocol
       .replace(/on\w+\s*=/gi, '') // Remove event handlers
       .trim();
