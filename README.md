@@ -8,7 +8,7 @@ This project serves as a comprehensive digital platform for the Rajpipla Palace,
 
 ## ✨ Features
 
-- **Virtual Tours**: Immersive 3D/VR experiences of palace chambers
+- **Virtual Tours**: Immersive experiences of palace chambers
 - **Digital Archive**: Comprehensive timeline and artifact collection
 - **Community Engagement**: User-generated content and story sharing
 - **Smart Tourism**: Visit planning and booking system

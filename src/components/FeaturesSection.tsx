@@ -16,7 +16,7 @@ import {
 const features = [
   {
     icon: Headset,
-    title: "Virtual 3D/VR Tours",
+    title: "Virtual Tours",
     description: "Explore every corner of Rajpipla Palace from anywhere in the world with immersive virtual reality experiences.",
     category: "Heritage Preservation"
   },
