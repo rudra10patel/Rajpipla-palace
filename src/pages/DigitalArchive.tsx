@@ -6,7 +6,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { 
-  Search, 
   Calendar, 
   Image, 
   FileText, 
@@ -23,7 +22,7 @@ import {
   RotateCw,
   X
 } from "lucide-react";
-import { timelineEvents, getTimelineByType, searchTimeline, getTimelineStats, type TimelineEvent } from "@/data/timelineData";
+import { timelineEvents, getTimelineByType, getTimelineStats, type TimelineEvent } from "@/data/timelineData";
 
 
 
@@ -32,9 +31,6 @@ const DigitalArchive = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [rotation, setRotation] = useState(0);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedType, setSelectedType] = useState<TimelineEvent['type'] | "all">("all");
-  const [selectedSignificance, setSelectedSignificance] = useState<TimelineEvent['significance'] | "all">("all");
 
   const vijayPalacePhotos = [
     "/vijay-palace-photos/front-side-of-rajvant.jpg",
@@ -45,42 +41,11 @@ const DigitalArchive = () => {
     "/vijay-palace-photos/09_960.jpg"
   ];
 
-  // Optimized filtering with memoization
-  const filteredTimelineEvents = useMemo(() => {
-    let filtered = timelineEvents;
-
-    // Search filter
-    if (searchQuery.trim()) {
-      filtered = searchTimeline(searchQuery);
-    }
-
-    // Type filter
-    if (selectedType !== "all") {
-      filtered = filtered.filter(event => event.type === selectedType);
-    }
-
-    // Significance filter
-    if (selectedSignificance !== "all") {
-      filtered = filtered.filter(event => event.significance === selectedSignificance);
-    }
-
-    return filtered;
-  }, [searchQuery, selectedType, selectedSignificance]);
+  // Display all timeline events without filtering
 
   // Memoized timeline stats
   const timelineStats = useMemo(() => getTimelineStats(), []);
 
-  // Get unique types for filter dropdown
-  const availableTypes = useMemo(() => {
-    const types = Array.from(new Set(timelineEvents.map(event => event.type)));
-    return types;
-  }, []);
-
-  // Get unique significance levels for filter dropdown
-  const availableSignificance = useMemo(() => {
-    const significance = Array.from(new Set(timelineEvents.map(event => event.significance).filter(Boolean)));
-    return significance;
-  }, []);
 
   const handleZoomIn = () => {
     setZoomLevel(prev => Math.min(prev + 0.5, 3));
@@ -153,49 +118,12 @@ const DigitalArchive = () => {
               <p className="text-muted-foreground">Journey through the major milestones in Rajvant Palace's rich history and cultural significance</p>
             </div>
 
-            {/* Search and Filter Controls */}
-            <div className="bg-card/50 backdrop-blur-sm rounded-lg p-6 border border-heritage-stone/20 mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                  <Input
-                    placeholder="Search timeline events..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
-                <select
-                  value={selectedType}
-                  onChange={(e) => setSelectedType(e.target.value as TimelineEvent['type'] | "all")}
-                  className="px-3 py-2 border border-heritage-stone/20 rounded-md bg-background text-foreground"
-                >
-                  <option value="all">All Types</option>
-                  {availableTypes.map(type => (
-                    <option key={type} value={type}>{type}</option>
-                  ))}
-                </select>
-                <select
-                  value={selectedSignificance}
-                  onChange={(e) => setSelectedSignificance(e.target.value as TimelineEvent['significance'] | "all")}
-                  className="px-3 py-2 border border-heritage-stone/20 rounded-md bg-background text-foreground"
-                >
-                  <option value="all">All Significance</option>
-                  {availableSignificance.map(sig => (
-                    <option key={sig} value={sig}>{sig?.charAt(0).toUpperCase() + sig?.slice(1)}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                Showing {filteredTimelineEvents.length} of {timelineEvents.length} events
-              </div>
-            </div>
 
             <div className="relative">
               {/* Timeline Line */}
               <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-heritage-gold transform md:-translate-x-1/2"></div>
 
-              {filteredTimelineEvents.map((event, index) => (
+              {timelineEvents.map((event, index) => (
                 <div key={index} className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} mb-12`}>
                   {/* Timeline Dot */}
                   <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-heritage-gold rounded-full border-4 border-heritage-cream transform md:-translate-x-1/2 z-10"></div>

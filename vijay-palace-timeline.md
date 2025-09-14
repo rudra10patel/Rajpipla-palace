@@ -2,71 +2,26 @@
 
 ## Historical Timeline of Vijay Palace
 
-### 19th Century - Foundation Era
-**1820s-1830s**
-- Initial construction of Vijay Palace begins under the Gohil dynasty
-- Strategic location chosen in Rajpipla for administrative and residential purposes
-- Indo-Islamic architectural style adopted with local craftsmanship
+### 1915 – Construction of Rajvant (Vijay) Palace
+Built by Maharajah Vijay Singhji in European/Indo-Saracenic style, featuring Romanesque dome, Corinthian columns, Gothic arches, and Venetian doors.
 
-**1850s-1860s**
-- Palace complex expanded with additional wings and courtyards
-- Royal gardens and pavilions added to the estate
-- Establishment of the royal treasury and administrative offices
+### 1934–1939 – Construction of Indrajit-Padmini Mahal (Vadia Palace)
+Commissioned by Maharaja Vijaysinhji after his 1932 Epsom Derby win; designed by Burjor Sohrab J. Aga in Indo-Saracenic with Art Deco interiors, Italian marble, Burma teak staircases, and frescoes by Armande Vallee.
 
-### Late 19th Century - Golden Era
-**1870s-1880s**
-- Major architectural enhancements with European influences
-- Construction of the Durbar Hall for royal audiences
-- Installation of modern amenities and infrastructure
+### 1948 – Accession to the Indian Union
+Rajpipla State officially acceded, and parts of the palaces began transitioning from royal residences to public heritage sites.
 
-**1890s**
-- Palace becomes the center of cultural and political activities
-- Royal library established with rare manuscripts and documents
-- Heritage artifacts and royal collections curated
+### 1960s – Initiation of Conservation Efforts
+Regional heritage bodies initiated preservation of palace structures and museum collections, recognizing their cultural value.
 
-### Early 20th Century - Modernization
-**1900s-1910s**
-- Introduction of electricity and modern conveniences
-- Renovation of royal chambers and public spaces
-- Establishment of the palace museum
+### 1980s – Official Heritage Recognition & Restoration
+State and national agencies designated the palaces as protected monuments; major restoration projects commenced to safeguard architecture and interiors.
 
-**1920s-1930s**
-- Political changes during British colonial period
-- Palace adapts to new administrative roles
-- Cultural preservation efforts begin
+### 2010s – Early Digital Documentation
+Photographic archives and small-scale virtual tours of palace interiors emerged online, but lacked standardized metadata and interactive 3D components.
 
-### Mid 20th Century - Transition Period
-**1940s-1950s**
-- Post-independence era brings administrative changes
-- Palace continues as cultural and heritage center
-- First public access granted to certain areas
-
-**1960s-1970s**
-- Heritage conservation initiatives begin
-- Palace recognized as important cultural monument
-- Tourism and educational programs introduced
-
-### Late 20th Century - Heritage Recognition
-**1980s-1990s**
-- Official heritage site designation
-- Major restoration and conservation projects
-- Digital documentation of palace artifacts begins
-
-**2000s**
-- UNESCO heritage consideration
-- Modern visitor facilities added
-- Cultural festivals and events established
-
-### 21st Century - Digital Era
-**2010s**
-- Digital archive project initiated
-- Virtual tour development begins
-- Online heritage documentation
-
-**2020s**
-- 360° virtual tour implementation
-- AI-guided heritage experiences
-- Global accessibility through digital platforms
+### 2020s – Advanced Digital Heritage Initiatives
+Development of comprehensive digital archives, 360° tours, and 3D models for cultural heritage; your IIIF-based platform project builds upon these foundations.
 
 ## Key Architectural Phases
 
