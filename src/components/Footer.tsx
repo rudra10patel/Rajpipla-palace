@@ -15,7 +15,7 @@ export const Footer = () => {
               <span className="text-2xl font-bold">Rajpipla Palace</span>
             </div>
             <p className="text-heritage-cream/70 leading-relaxed">
-              Preserving royal heritage through innovative digital experiences and community engagement.
+              Preserving royal heritage through innovative digital experiences and immersive technology.
             </p>
             <div className="flex gap-3">
               <Button size="icon" variant="ghost" className="text-heritage-cream/70 hover:text-heritage-gold hover:bg-heritage-gold/10">
@@ -40,7 +40,6 @@ export const Footer = () => {
               <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Virtual Tours</a></li>
               <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Digital Archive</a></li>
               <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Heritage Timeline</a></li>
-              <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Community Stories</a></li>
             </ul>
           </div>
           
@@ -49,8 +48,6 @@ export const Footer = () => {
             <h3 className="text-lg font-semibold text-heritage-gold">Visit</h3>
             <ul className="space-y-2">
               <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Plan Your Visit</a></li>
-              <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Book Tickets</a></li>
-              <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Guided Tours</a></li>
               <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Nearby Hotels</a></li>
               <li><a href="#" className="text-heritage-cream/70 hover:text-heritage-gold transition-smooth">Transportation</a></li>
             </ul>

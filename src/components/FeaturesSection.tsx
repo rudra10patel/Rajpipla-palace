@@ -33,12 +33,6 @@ const features = [
     category: "Tourism Enhancement"
   },
   {
-    icon: Users,
-    title: "Community Memories",
-    description: "Share stories, upload memories, and connect with fellow heritage enthusiasts from around the globe.",
-    category: "Community Engagement"
-  },
-  {
     icon: BarChart3,
     title: "Analytics Dashboard",
     description: "Track visitor engagement, popular sections, and tourism trends to enhance preservation efforts.",
