@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { 
   Camera, 
   Smartphone, 
@@ -10,33 +11,49 @@ import {
   ArrowRight,
   Headset,
   BookOpen,
-  MapPin
+  MapPin,
+  Play,
+  Archive,
+  Volume2,
+  Calendar,
+  Bot
 } from "lucide-react";
 
 const features = [
   {
-    icon: Headset,
-    title: "Virtual Tours",
-    description: "Explore every corner of Rajpipla Palace from anywhere in the world with immersive virtual reality experiences.",
-    category: "Heritage Preservation"
+    icon: Play,
+    title: "Virtual Tour",
+    description: "Experience the grandeur of Rajpipla Palace through immersive 360° virtual tours. Explore every room, corridor, and hidden corner from the comfort of your home.",
+    category: "Immersive Experience",
+    href: "/virtual-tour"
   },
   {
-    icon: BookOpen,
-    title: "Digital Archive & Timeline",
-    description: "Discover centuries of history through digitized manuscripts, photographs, and architectural designs.",
-    category: "Heritage Preservation"
+    icon: Archive,
+    title: "Digital Archive",
+    description: "Discover centuries of royal history through digitized manuscripts, photographs, architectural plans, and historical documents preserved for future generations.",
+    category: "Heritage Preservation",
+    href: "/archive"
   },
   {
-    icon: MapPin,
-    title: "Smart Tourism Hub",
-    description: "Plan your visit with real-time information on tours, tickets, accommodations, and nearby attractions.",
-    category: "Tourism Enhancement"
+    icon: Volume2,
+    title: "Audio Tour",
+    description: "Listen to expert narrations and royal stories as you explore the palace. Available in multiple languages with authentic sound effects and music.",
+    category: "Guided Experience",
+    href: "/audio-tour"
   },
   {
-    icon: BarChart3,
-    title: "Analytics Dashboard",
-    description: "Track visitor engagement, popular sections, and tourism trends to enhance preservation efforts.",
-    category: "For Authorities"
+    icon: Calendar,
+    title: "Visit",
+    description: "Plan your physical visit to Rajpipla Palace with real-time information on tours, tickets, accommodations, and nearby attractions.",
+    category: "Tourism Planning",
+    href: "/visit"
+  },
+  {
+    icon: Bot,
+    title: "AI Guide",
+    description: "Get personalized recommendations and answers about the palace history, architecture, and royal family through our intelligent AI assistant.",
+    category: "Smart Assistance",
+    href: "/ai-guide"
   }
 ];
 
@@ -56,39 +73,33 @@ export const FeaturesSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {features.map((feature, index) => (
-            <Card 
-              key={index} 
-              className="group hover:shadow-heritage transition-royal border-heritage-stone/20 bg-card/50 backdrop-blur-sm"
-              style={{animationDelay: `${index * 0.1}s`}}
-            >
-              <CardHeader>
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="p-3 rounded-lg bg-gradient-heritage group-hover:scale-110 transition-royal">
-                    <feature.icon className="w-6 h-6 text-heritage-cream" />
+            <Link key={index} to={feature.href} className="block">
+              <Card 
+                className="group hover:shadow-heritage transition-royal border-heritage-stone/20 bg-card/50 backdrop-blur-sm cursor-pointer h-full hover:scale-105"
+                style={{animationDelay: `${index * 0.1}s`}}
+              >
+                <CardHeader>
+                  <div className="flex items-center gap-4 mb-2">
+                    <div className="p-3 rounded-lg bg-gradient-heritage group-hover:scale-110 transition-royal">
+                      <feature.icon className="w-6 h-6 text-heritage-cream" />
+                    </div>
+                    <span className="text-sm font-medium text-heritage-terracotta uppercase tracking-wide">
+                      {feature.category}
+                    </span>
                   </div>
-                  <span className="text-sm font-medium text-heritage-terracotta uppercase tracking-wide">
-                    {feature.category}
-                  </span>
-                </div>
-                <CardTitle className="text-xl text-heritage-royal group-hover:text-heritage-royal/80 transition-smooth">
-                  {feature.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base leading-relaxed">
-                  {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+                  <CardTitle className="text-xl text-heritage-royal group-hover:text-heritage-royal/80 transition-smooth flex items-center justify-between">
+                    {feature.title}
+                    <ArrowRight className="w-5 h-5 text-heritage-royal/60 group-hover:text-heritage-royal group-hover:translate-x-1 transition-all" />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base leading-relaxed">
+                    {feature.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
-        </div>
-        
-        <div className="text-center">
-          <Button variant="royal" size="xl" className="group">
-            <Crown className="w-5 h-5" />
-            Explore All Features
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
         </div>
       </div>
     </section>

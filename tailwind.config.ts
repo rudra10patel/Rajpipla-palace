@@ -99,6 +99,38 @@ export default {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "zoom-in": {
+          "0%": { transform: "scale(1.1)", opacity: "0.8" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        "fade-in-slow": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "pulse-slow": {
+          "0%, 100%": { opacity: "0.1" },
+          "50%": { opacity: "0.3" },
+        },
+        "title-slide-in": {
+          "0%": { opacity: "0", transform: "translateY(-50px) scale(0.9)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        "subtitle-slide-in": {
+          "0%": { opacity: "0", transform: "translateY(-30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "description-slide-in": {
+          "0%": { opacity: "0", transform: "translateY(-20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "buttons-slide-in": {
+          "0%": { opacity: "0", transform: "translateY(30px) scale(0.9)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        "stats-slide-in": {
+          "0%": { opacity: "0", transform: "translateY(40px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -106,6 +138,14 @@ export default {
         "float": "float 6s ease-in-out infinite",
         "fade-in": "fade-in 0.8s ease-out",
         "slide-up": "slide-up 0.8s ease-out",
+        "zoom-in": "zoom-in 1.5s ease-out",
+        "fade-in-slow": "fade-in-slow 2s ease-out",
+        "pulse-slow": "pulse-slow 4s ease-in-out infinite",
+        "title-slide-in": "title-slide-in 1s ease-out",
+        "subtitle-slide-in": "subtitle-slide-in 1s ease-out",
+        "description-slide-in": "description-slide-in 1s ease-out",
+        "buttons-slide-in": "buttons-slide-in 1s ease-out",
+        "stats-slide-in": "stats-slide-in 1s ease-out",
       },
       backgroundImage: {
         "gradient-royal": "var(--gradient-royal)",
