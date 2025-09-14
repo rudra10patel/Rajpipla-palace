@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import LoadingSpinner from "./LoadingSpinner";
 import { 
   Calendar, 
   Crown, 
@@ -177,6 +178,8 @@ const SpiralTimeline = () => {
   const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
   const [rotation, setRotation] = useState({ x: 0, y: 0, z: 0 });
   const [scale, setScale] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const spiralRef = useRef<HTMLDivElement>(null);
@@ -204,6 +207,33 @@ const SpiralTimeline = () => {
   }, []);
 
   const [events, setEvents] = useState(calculateSpiralPositions());
+
+  // Loading simulation
+  useEffect(() => {
+    const loadingSteps = [
+      { progress: 20, delay: 500 },
+      { progress: 40, delay: 800 },
+      { progress: 60, delay: 600 },
+      { progress: 80, delay: 700 },
+      { progress: 100, delay: 1000 }
+    ];
+
+    let currentStep = 0;
+    const loadingInterval = setInterval(() => {
+      if (currentStep < loadingSteps.length) {
+        setLoadingProgress(loadingSteps[currentStep].progress);
+        currentStep++;
+      } else {
+        clearInterval(loadingInterval);
+        // Add a small delay before hiding loading
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
+      }
+    }, loadingSteps[currentStep]?.delay || 1000);
+
+    return () => clearInterval(loadingInterval);
+  }, []);
 
   // Mouse tracking for parallax effect
   useEffect(() => {
@@ -324,6 +354,11 @@ const SpiralTimeline = () => {
   const jumpToEvent = (index: number) => {
     setCurrentIndex(index);
   };
+
+  // Show loading screen
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">

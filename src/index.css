@@ -370,4 +370,74 @@ All colors MUST be HSL.
       radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
       radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
   }
+
+  /* Loading animations */
+  @keyframes loadingProgress {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+  }
+
+  @keyframes loadingPulse {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes loadingFloat {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes loadingRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .loading-spinner {
+    animation: loadingRotate 2s linear infinite;
+  }
+
+  .loading-pulse {
+    animation: loadingPulse 2s ease-in-out infinite;
+  }
+
+  .loading-float {
+    animation: loadingFloat 3s ease-in-out infinite;
+  }
+
+  .loading-float:nth-child(even) {
+    animation-delay: -1.5s;
+  }
+
+  .loading-float:nth-child(3n) {
+    animation-delay: -1s;
+  }
+
+  /* Disable scroll animations */
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  * {
+    scroll-behavior: auto !important;
+  }
+
+  /* Ensure pages open at top without animation */
+  .page-container {
+    scroll-behavior: auto !important;
+  }
 }

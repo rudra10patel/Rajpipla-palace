@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChatInterface } from "@/components/ChatInterface";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 import { 
   MessageCircle, 
   Send, 
@@ -31,9 +32,16 @@ const conversationTopics = ChatbotService.getConversationTopics();
 
 
 const AIGuide = () => {
+  // Scroll to top instantly when component mounts
+  useScrollToTop();
+  
+  // Also set scroll position immediately on render
+  if (typeof window !== 'undefined') {
+    window.scrollTo(0, 0);
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-subtle pt-20">
+    <div className="min-h-screen bg-gradient-subtle pt-20 page-container">
       <div className="container mx-auto px-6 py-12">
         {/* Header */}
         <div className="text-center mb-12">
@@ -50,18 +58,13 @@ const AIGuide = () => {
               variant="palace" 
               size="xl"
               onClick={() => {
-                // Scroll to the chat interface
-                const chatInterface = document.querySelector('[data-chat-interface]');
-                if (chatInterface) {
-                  chatInterface.scrollIntoView({ behavior: 'smooth' });
-                  // Focus on the input field
-                  setTimeout(() => {
-                    const input = chatInterface.querySelector('input[type="text"]');
-                    if (input) {
-                      (input as HTMLInputElement).focus();
-                    }
-                  }, 500);
-                }
+                // Focus on the input field without scrolling
+                setTimeout(() => {
+                  const input = document.querySelector('[data-chat-interface] input[type="text"]');
+                  if (input) {
+                    (input as HTMLInputElement).focus();
+                  }
+                }, 100);
               }}
             >
               <MessageCircle className="w-5 h-5" />
