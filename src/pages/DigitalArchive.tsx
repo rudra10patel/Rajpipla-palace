@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { 
   Search, 
   Calendar, 
@@ -22,99 +23,18 @@ import {
   RotateCw,
   X
 } from "lucide-react";
+import { timelineEvents, getTimelineByType, searchTimeline, getTimelineStats, type TimelineEvent } from "@/data/timelineData";
 
-const timelineEvents = [
-  {
-    year: "1820s",
-    title: "Foundation of Vijay Palace",
-    description: "Initial construction of Vijay Palace begins under the Gohil dynasty. Strategic location chosen in Rajpipla for administrative and residential purposes with Indo-Islamic architectural style.",
-    type: "Foundation",
-    artifacts: ["Foundation Stones", "Initial Blueprints", "Royal Charter", "Construction Records"]
-  },
-  {
-    year: "1850s",
-    title: "Palace Expansion Era",
-    description: "Major expansion of the palace complex with additional wings, courtyards, royal gardens, and pavilions. Establishment of royal treasury and administrative offices.",
-    type: "Architecture",
-    artifacts: ["Expansion Plans", "Garden Designs", "Treasury Records", "Administrative Documents"]
-  },
-  {
-    year: "1870s",
-    title: "Golden Era Begins",
-    description: "Major architectural enhancements with European influences. Construction of the Durbar Hall for royal audiences and installation of modern amenities.",
-    type: "Architecture",
-    artifacts: ["Durbar Hall Plans", "European Artifacts", "Modern Fixtures", "Royal Portraits"]
-  },
-  {
-    year: "1890s",
-    title: "Cultural Center Establishment",
-    description: "Palace becomes the center of cultural and political activities. Royal library established with rare manuscripts and heritage artifacts curated.",
-    type: "Cultural",
-    artifacts: ["Library Catalog", "Manuscript Collection", "Cultural Records", "Art Collections"]
-  },
-  {
-    year: "1900s",
-    title: "Modernization Period",
-    description: "Introduction of electricity and modern conveniences. Renovation of royal chambers and public spaces. Establishment of the palace museum.",
-    type: "Modernization",
-    artifacts: ["Electrical Plans", "Modern Amenities", "Museum Catalog", "Renovation Records"]
-  },
-  {
-    year: "1920s",
-    title: "Political Transition",
-    description: "Political changes during British colonial period. Palace adapts to new administrative roles while maintaining cultural preservation efforts.",
-    type: "Political",
-    artifacts: ["Political Documents", "Administrative Records", "Cultural Preservation Plans", "Colonial Correspondence"]
-  },
-  {
-    year: "1947",
-    title: "Independence Era",
-    description: "Post-independence era brings administrative changes. Palace continues as cultural and heritage center with first public access granted to certain areas.",
-    type: "Political",
-    artifacts: ["Independence Documents", "Public Access Records", "Heritage Recognition", "Cultural Programs"]
-  },
-  {
-    year: "1960s",
-    title: "Heritage Conservation",
-    description: "Heritage conservation initiatives begin. Palace recognized as important cultural monument with tourism and educational programs introduced.",
-    type: "Heritage",
-    artifacts: ["Conservation Plans", "Heritage Documentation", "Tourism Records", "Educational Materials"]
-  },
-  {
-    year: "1980s",
-    title: "Official Heritage Recognition",
-    description: "Official heritage site designation with major restoration and conservation projects. Digital documentation of palace artifacts begins.",
-    type: "Heritage",
-    artifacts: ["Heritage Certificates", "Restoration Records", "Digital Archives", "Conservation Reports"]
-  },
-  {
-    year: "2000s",
-    title: "UNESCO Consideration",
-    description: "UNESCO heritage consideration with modern visitor facilities added. Cultural festivals and events established for public engagement.",
-    type: "Recognition",
-    artifacts: ["UNESCO Documents", "Visitor Facilities", "Festival Records", "Public Engagement Programs"]
-  },
-  {
-    year: "2010s",
-    title: "Digital Heritage Era",
-    description: "Digital archive project initiated with virtual tour development begins. Online heritage documentation and global accessibility.",
-    type: "Digital",
-    artifacts: ["Digital Archives", "Virtual Tour Development", "Online Documentation", "Global Access Records"]
-  },
-  {
-    year: "2020s",
-    title: "AI & Virtual Reality",
-    description: "360° virtual tour implementation with AI-guided heritage experiences. Global accessibility through digital platforms and next-generation heritage technology.",
-    type: "Technology",
-    artifacts: ["VR Implementation", "AI Development", "Global Platform Records", "Technology Integration"]
-  }
-];
+
 
 const DigitalArchive = () => {
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [rotation, setRotation] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedType, setSelectedType] = useState<TimelineEvent['type'] | "all">("all");
+  const [selectedSignificance, setSelectedSignificance] = useState<TimelineEvent['significance'] | "all">("all");
 
   const vijayPalacePhotos = [
     "/vijay-palace-photos/front-side-of-rajvant.jpg",
@@ -124,6 +44,43 @@ const DigitalArchive = () => {
     "/vijay-palace-photos/10_960.jpg",
     "/vijay-palace-photos/09_960.jpg"
   ];
+
+  // Optimized filtering with memoization
+  const filteredTimelineEvents = useMemo(() => {
+    let filtered = timelineEvents;
+
+    // Search filter
+    if (searchQuery.trim()) {
+      filtered = searchTimeline(searchQuery);
+    }
+
+    // Type filter
+    if (selectedType !== "all") {
+      filtered = filtered.filter(event => event.type === selectedType);
+    }
+
+    // Significance filter
+    if (selectedSignificance !== "all") {
+      filtered = filtered.filter(event => event.significance === selectedSignificance);
+    }
+
+    return filtered;
+  }, [searchQuery, selectedType, selectedSignificance]);
+
+  // Memoized timeline stats
+  const timelineStats = useMemo(() => getTimelineStats(), []);
+
+  // Get unique types for filter dropdown
+  const availableTypes = useMemo(() => {
+    const types = Array.from(new Set(timelineEvents.map(event => event.type)));
+    return types;
+  }, []);
+
+  // Get unique significance levels for filter dropdown
+  const availableSignificance = useMemo(() => {
+    const significance = Array.from(new Set(timelineEvents.map(event => event.significance).filter(Boolean)));
+    return significance;
+  }, []);
 
   const handleZoomIn = () => {
     setZoomLevel(prev => Math.min(prev + 0.5, 3));
@@ -192,15 +149,53 @@ const DigitalArchive = () => {
           {/* Timeline Tab */}
           <TabsContent value="timeline" className="space-y-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-heritage-royal mb-4">200+ Years of Vijay Palace Heritage</h2>
-              <p className="text-muted-foreground">Journey through the major milestones in Vijay Palace's rich history and cultural significance</p>
+              <h2 className="text-3xl font-bold text-heritage-royal mb-4">Rajvant Palace Heritage Timeline</h2>
+              <p className="text-muted-foreground">Journey through the major milestones in Rajvant Palace's rich history and cultural significance</p>
+            </div>
+
+            {/* Search and Filter Controls */}
+            <div className="bg-card/50 backdrop-blur-sm rounded-lg p-6 border border-heritage-stone/20 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                  <Input
+                    placeholder="Search timeline events..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+                <select
+                  value={selectedType}
+                  onChange={(e) => setSelectedType(e.target.value as TimelineEvent['type'] | "all")}
+                  className="px-3 py-2 border border-heritage-stone/20 rounded-md bg-background text-foreground"
+                >
+                  <option value="all">All Types</option>
+                  {availableTypes.map(type => (
+                    <option key={type} value={type}>{type}</option>
+                  ))}
+                </select>
+                <select
+                  value={selectedSignificance}
+                  onChange={(e) => setSelectedSignificance(e.target.value as TimelineEvent['significance'] | "all")}
+                  className="px-3 py-2 border border-heritage-stone/20 rounded-md bg-background text-foreground"
+                >
+                  <option value="all">All Significance</option>
+                  {availableSignificance.map(sig => (
+                    <option key={sig} value={sig}>{sig?.charAt(0).toUpperCase() + sig?.slice(1)}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Showing {filteredTimelineEvents.length} of {timelineEvents.length} events
+              </div>
             </div>
 
             <div className="relative">
               {/* Timeline Line */}
               <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-heritage-gold transform md:-translate-x-1/2"></div>
 
-              {timelineEvents.map((event, index) => (
+              {filteredTimelineEvents.map((event, index) => (
                 <div key={index} className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} mb-12`}>
                   {/* Timeline Dot */}
                   <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-heritage-gold rounded-full border-4 border-heritage-cream transform md:-translate-x-1/2 z-10"></div>
@@ -216,6 +211,20 @@ const DigitalArchive = () => {
                           <Badge variant="outline">
                             {event.type}
                           </Badge>
+                          {event.significance && (
+                            <Badge 
+                              variant="outline" 
+                              className={`${
+                                event.significance === 'high' 
+                                  ? 'bg-red-100 text-red-800 border-red-200' 
+                                  : event.significance === 'medium'
+                                  ? 'bg-yellow-100 text-yellow-800 border-yellow-200'
+                                  : 'bg-gray-100 text-gray-800 border-gray-200'
+                              }`}
+                            >
+                              {event.significance}
+                            </Badge>
+                          )}
                         </div>
                         <CardTitle className="text-xl text-heritage-royal">{event.title}</CardTitle>
                       </CardHeader>

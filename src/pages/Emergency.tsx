@@ -24,7 +24,7 @@ const emergencyContacts = [
   },
   {
     name: "Vijay Palace Security",
-    number: "+91 98765 43210",
+    number: "+91 XXXXX XXXXX",
     description: "On-site palace security team",
     icon: Building,
     priority: "medium"
