@@ -17,33 +17,34 @@ import {
   ThumbsUp,
   ThumbsDown
 } from "lucide-react";
-import { ChatbotService, ChatMessage } from '@/services/chatbotService';
+import { useChatBot } from '@/hooks/useChatBot';
+import { ChatMessage } from '@/components/ChatMessage';
+import { TypingIndicator } from '@/components/TypingIndicator';
 
 interface ChatInterfaceProps {
   className?: string;
 }
 
 export const ChatInterface: React.FC<ChatInterfaceProps> = ({ className }) => {
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: '1',
-      type: 'ai',
-      message: "Namaste! I'm Rajpipla, your AI heritage guide. I know everything about this magnificent palace. What would you like to explore today?",
-      timestamp: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
-    }
-  ]);
   const [inputMessage, setInputMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isListening, setIsListening] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const speechSynthesis = window.speechSynthesis;
+  const {
+    messages,
+    isLoading,
+    error,
+    isConnected,
+    isSpeaking,
+    messagesEndRef,
+    sendMessage,
+    handleVoiceInput,
+    handleSpeakMessage,
+    handleQuickQuestion,
+    clearChat
+  } = useChatBot();
 
-  // Removed auto-scroll to prevent unwanted scrolling behavior
-  // Users can manually scroll to see new messages
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Focus input on mount
   useEffect(() => {
@@ -52,98 +53,35 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ className }) => {
 
   // Listen for quick question events from sidebar
   useEffect(() => {
-    const handleQuickQuestion = (event: CustomEvent) => {
+    const handleQuickQuestionEvent = (event: CustomEvent) => {
       const question = event.detail;
       setInputMessage(question);
       setShowSuggestions(false);
       inputRef.current?.focus();
     };
 
-    window.addEventListener('quickQuestion', handleQuickQuestion as EventListener);
+    window.addEventListener('quickQuestion', handleQuickQuestionEvent as EventListener);
     return () => {
-      window.removeEventListener('quickQuestion', handleQuickQuestion as EventListener);
+      window.removeEventListener('quickQuestion', handleQuickQuestionEvent as EventListener);
     };
   }, []);
 
   const handleSendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
 
-    const userMessage = ChatbotService.createUserMessage(inputMessage);
-    setMessages(prev => [...prev, userMessage]);
+    await sendMessage(inputMessage);
     setInputMessage('');
-    setIsLoading(true);
     setShowSuggestions(false);
-
-    try {
-      const aiResponse = await ChatbotService.sendMessage(inputMessage);
-      setMessages(prev => [...prev, aiResponse]);
-      
-      // Speak the response if not muted
-      if (!isMuted && speechSynthesis) {
-        const utterance = new SpeechSynthesisUtterance(aiResponse.message);
-        utterance.rate = 0.9;
-        utterance.pitch = 1;
-        utterance.volume = 0.8;
-        speechSynthesis.speak(utterance);
-      }
-    } catch (error) {
-      console.error('Error sending message:', error);
-      const errorMessage: ChatMessage = {
-        id: Date.now().toString(),
-        type: 'ai',
-        message: "I apologize, but I'm having trouble processing your request right now. Please try again in a moment.",
-        timestamp: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
-      };
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
-    }
   };
 
-  const handleQuickQuestion = (question: string) => {
+  const handleQuickQuestionClick = (question: string) => {
     setInputMessage(question);
     setShowSuggestions(false);
     inputRef.current?.focus();
   };
 
-  const handleVoiceInput = () => {
-    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-      alert('Voice input is not supported in this browser. Please use Chrome or Edge.');
-      return;
-    }
-
-    if (isListening) {
-      setIsListening(false);
-      return;
-    }
-
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-    
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.lang = 'en-US';
-
-    recognition.onstart = () => {
-      setIsListening(true);
-    };
-
-    recognition.onresult = (event: any) => {
-      const transcript = event.results[0][0].transcript;
-      setInputMessage(transcript);
-      setIsListening(false);
-    };
-
-    recognition.onerror = (event: any) => {
-      console.error('Speech recognition error:', event.error);
-      setIsListening(false);
-    };
-
-    recognition.onend = () => {
-      setIsListening(false);
-    };
-
-    recognition.start();
+  const handleVoiceInputClick = () => {
+    handleVoiceInput();
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -153,35 +91,29 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ className }) => {
     }
   };
 
-  const clearChat = () => {
-    setMessages([
-      {
-        id: '1',
-        type: 'ai',
-        message: "Namaste! I'm Rajpipla, your AI heritage guide. I know everything about this magnificent palace. What would you like to explore today?",
-        timestamp: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
-      }
-    ]);
-    setShowSuggestions(true);
-  };
-
   const toggleMute = () => {
     if (isMuted) {
-      speechSynthesis.cancel();
+      window.speechSynthesis.cancel();
     } else {
-      speechSynthesis.cancel();
+      window.speechSynthesis.cancel();
     }
     setIsMuted(!isMuted);
   };
 
-  const quickQuestions = ChatbotService.getQuickQuestions();
+  const quickQuestions = [
+    "Tell me about Rajpipla Palace's history",
+    "What architectural features does the palace have?",
+    "Who built the palace and when?",
+    "What can I see during a visit?",
+    "Tell me about the royal family",
+    "What are the nearby attractions?"
+  ];
 
   return (
     <Card className={`bg-card/80 backdrop-blur-sm border-heritage-stone/20 h-[600px] flex flex-col ${className}`}>
       <CardHeader className="flex-shrink-0 border-b border-heritage-stone/20">
         <div className="flex items-center gap-4">
           <Avatar className="w-12 h-12">
-            <AvatarImage src="/api/placeholder/48/48" alt="AI Guide" />
             <AvatarFallback className="bg-heritage-royal text-heritage-cream">
               <Bot className="w-6 h-6" />
             </AvatarFallback>
@@ -189,8 +121,8 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ className }) => {
           <div>
             <CardTitle className="text-heritage-royal">Rajpipla AI Guide</CardTitle>
             <CardDescription className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              Online • Responds instantly
+              <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
+              {isConnected ? 'Online • AI Powered' : 'Offline • Check Connection'}
             </CardDescription>
           </div>
           <div className="ml-auto flex gap-2">
@@ -214,75 +146,41 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ className }) => {
         </div>
       </CardHeader>
       
+      {/* Error Message */}
+      {error && (
+        <div className="px-6 py-2 bg-red-100 border-b border-red-200">
+          <p className="text-sm text-red-800">{error}</p>
+        </div>
+      )}
+      
       {/* Chat Messages */}
       <CardContent className="flex-1 overflow-y-auto p-6 space-y-4">
-        {messages.map((message) => (
-          <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[80%] ${message.type === 'user' ? 'order-2' : 'order-1'}`}>
-              <div className={`flex items-start gap-3 ${message.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                <Avatar className="w-8 h-8 flex-shrink-0">
-                  {message.type === 'ai' ? (
-                    <AvatarFallback className="bg-heritage-royal text-heritage-cream">
-                      <Bot className="w-4 h-4" />
-                    </AvatarFallback>
-                  ) : (
-                    <AvatarFallback className="bg-heritage-gold text-heritage-cream">
-                      <User className="w-4 h-4" />
-                    </AvatarFallback>
-                  )}
-                </Avatar>
-                <div className={`rounded-lg p-3 ${
-                  message.type === 'user' 
-                    ? 'bg-heritage-royal text-heritage-cream' 
-                    : 'bg-heritage-cream border border-heritage-stone/20'
-                }`}>
-                  <p className="text-sm whitespace-pre-wrap">{message.message}</p>
-                  <div className="flex items-center justify-between mt-2">
-                    <p className={`text-xs ${
-                      message.type === 'user' ? 'text-heritage-cream/70' : 'text-muted-foreground'
-                    }`}>
-                      {message.timestamp}
-                    </p>
-                    {message.type === 'ai' && (
-                      <div className="flex gap-1">
-                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                          <ThumbsUp className="w-3 h-3" />
-                        </Button>
-                        <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
-                          <ThumbsDown className="w-3 h-3" />
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-        
-        {isLoading && (
-          <div className="flex justify-start">
-            <div className="flex items-center gap-3">
-              <Avatar className="w-8 h-8">
-                <AvatarFallback className="bg-heritage-royal text-heritage-cream">
-                  <Bot className="w-4 h-4" />
-                </AvatarFallback>
-              </Avatar>
-              <div className="bg-heritage-cream border border-heritage-stone/20 rounded-lg p-3">
-                <div className="flex items-center gap-2">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span className="text-sm text-muted-foreground">Rajpipla is thinking...</span>
-                </div>
-              </div>
+        {messages.length === 0 && (
+          <div className="flex justify-center items-center h-full">
+            <div className="text-center">
+              <Bot className="w-12 h-12 text-heritage-royal/50 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-heritage-royal mb-2">Welcome to Rajpipla AI Guide!</h3>
+              <div className="text-muted-foreground">Ask me anything about the palace's history, architecture, or heritage.</div>
             </div>
           </div>
         )}
+        
+        {messages.map((message) => (
+          <ChatMessage
+            key={message.id}
+            message={message}
+            onSpeak={handleSpeakMessage}
+            isSpeaking={isSpeaking}
+          />
+        ))}
+        
+        {isLoading && <TypingIndicator />}
         
         <div ref={messagesEndRef} />
       </CardContent>
       
       {/* Quick Questions */}
-      {showSuggestions && messages.length === 1 && (
+      {showSuggestions && messages.length === 0 && (
         <div className="px-6 pb-4">
           <div className="text-sm text-muted-foreground mb-3">Quick questions to get started:</div>
           <div className="flex flex-wrap gap-2">
@@ -291,7 +189,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ className }) => {
                 key={index}
                 variant="outline"
                 className="cursor-pointer hover:bg-heritage-royal hover:text-heritage-cream transition-colors text-xs"
-                onClick={() => handleQuickQuestion(question)}
+                onClick={() => handleQuickQuestionClick(question)}
               >
                 {question}
               </Badge>
@@ -314,17 +212,13 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ className }) => {
             disabled={isLoading}
           />
           <Button 
-            variant={isListening ? "heritage" : "palace"} 
+            variant="palace" 
             size="icon"
-            onClick={handleVoiceInput}
+            onClick={handleVoiceInputClick}
             disabled={isLoading}
             title="Voice Input"
           >
-            {isListening ? (
-              <MicOff className="w-4 h-4 animate-pulse" />
-            ) : (
-              <Mic className="w-4 h-4" />
-            )}
+            <Mic className="w-4 h-4" />
           </Button>
           <Button 
             variant="heritage" 
