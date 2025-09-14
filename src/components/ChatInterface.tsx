@@ -42,10 +42,8 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ className }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const speechSynthesis = window.speechSynthesis;
 
-  // Auto-scroll to bottom when new messages arrive
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  // Removed auto-scroll to prevent unwanted scrolling behavior
+  // Users can manually scroll to see new messages
 
   // Focus input on mount
   useEffect(() => {
