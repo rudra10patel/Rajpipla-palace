@@ -16,7 +16,7 @@ import {
 const features = [
   {
     icon: Headset,
-    title: "Virtual 3D/VR Tours",
+    title: "Virtual Tours",
     description: "Explore every corner of Rajpipla Palace from anywhere in the world with immersive virtual reality experiences.",
     category: "Heritage Preservation"
   },
@@ -31,12 +31,6 @@ const features = [
     title: "Smart Tourism Hub",
     description: "Plan your visit with real-time information on tours, tickets, accommodations, and nearby attractions.",
     category: "Tourism Enhancement"
-  },
-  {
-    icon: Users,
-    title: "Community Memories",
-    description: "Share stories, upload memories, and connect with fellow heritage enthusiasts from around the globe.",
-    category: "Community Engagement"
   },
   {
     icon: BarChart3,

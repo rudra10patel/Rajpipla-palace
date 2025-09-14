@@ -275,7 +275,7 @@ const Visit = () => {
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Everything you need to know for an unforgettable visit to Vijay Palace in Rajpipla. 
-            From visiting hours and guided tours to accommodation and nearby attractions.
+            From visiting hours and entry information to accommodation and nearby attractions.
           </p>
         </div>
 
@@ -335,7 +335,6 @@ const Visit = () => {
                     <ul className="text-sm text-muted-foreground space-y-1">
                       <li>• Entry fees payable at palace entrance</li>
                       <li>• Photography allowed (no additional fee)</li>
-                      <li>• Guided tours available at extra cost</li>
                       <li>• Wheelchair accessible areas available</li>
                     </ul>
                   </div>
@@ -371,7 +370,6 @@ const Visit = () => {
                     <ul className="text-sm text-muted-foreground space-y-1">
                       <li>• Last entry 1 hour before closing</li>
                       <li>• Photography permitted (no additional fee)</li>
-                      <li>• Guided tours available in 3 languages</li>
                       <li>• Wheelchair accessible areas available</li>
                     </ul>
                   </div>

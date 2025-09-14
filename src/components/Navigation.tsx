@@ -9,7 +9,6 @@ const navigation = [
   { name: "Digital Archive", href: "/archive" },
   { name: "Audio Tour", href: "/audio-tour" },
   { name: "Visit", href: "/visit" },
-  { name: "Community", href: "/community" },
   { name: "AI Guide", href: "/ai-guide" },
 ];
 
