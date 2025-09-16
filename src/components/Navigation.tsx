@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Crown, Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -44,6 +45,7 @@ export const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            <ModeToggle />
           </div>
 
           {/* Mobile menu button */}
@@ -75,6 +77,7 @@ export const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
+              <ModeToggle />
             </div>
           </div>
         )}

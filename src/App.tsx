@@ -12,6 +12,7 @@ import Visit from "./pages/Visit";
 import AIGuide from "./pages/AIGuide";
 import Emergency from "./pages/Emergency";
 import NotFound from "./pages/NotFound";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const queryClient = new QueryClient();
 
@@ -20,20 +21,22 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/virtual-tour" element={<VirtualTour />} />
-          <Route path="/archive" element={<DigitalArchive />} />
-          <Route path="/audio-tour" element={<AudioTour />} />
-          <Route path="/visit" element={<Visit />} />
-          <Route path="/ai-guide" element={<AIGuide />} />
-          <Route path="/emergency" element={<Emergency />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <BrowserRouter>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/virtual-tour" element={<VirtualTour />} />
+            <Route path="/archive" element={<DigitalArchive />} />
+            <Route path="/audio-tour" element={<AudioTour />} />
+            <Route path="/visit" element={<Visit />} />
+            <Route path="/ai-guide" element={<AIGuide />} />
+            <Route path="/emergency" element={<Emergency />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
