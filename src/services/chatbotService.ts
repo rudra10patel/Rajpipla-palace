@@ -232,11 +232,11 @@ export class ChatbotService {
     });
   }
 
-  private static findMatchingContent(query: string, category: any): string[] {
+  private static findMatchingContent(query: string, category: { [key: string]: string[] | string }): string[] {
     const results: string[] = [];
     const searchTerms = query.toLowerCase().split(' ');
     
-    Object.values(category).forEach((items: any) => {
+    Object.values(category).forEach((items: string[] | string) => {
       if (Array.isArray(items)) {
         items.forEach((item: string) => {
           if (searchTerms.some(term => item.toLowerCase().includes(term))) {

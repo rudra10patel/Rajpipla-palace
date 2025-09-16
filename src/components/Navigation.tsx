@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-import { Crown, Menu, X } from "lucide-react";
+import { Crown, Menu, X, Search } from "lucide-react";
+import { Input } from "./ui/input";
 import { Link, useLocation } from "react-router-dom";
+<<<<<<< Updated upstream
 import { ModeToggle } from "@/components/mode-toggle";
+=======
+<<<<<<< HEAD
+import { SearchResults, type SearchResult } from "./SearchResults";
+=======
+import { ModeToggle } from "@/components/mode-toggle";
+>>>>>>> 23fa67fb67d6921e219fbae29704e34f4211cf5f
+>>>>>>> Stashed changes
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -16,7 +25,57 @@ const navigation = [
 
 export const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const location = useLocation();
+
+  const performSearch = useCallback((term: string) => {
+    if (!term.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    const searchableContent = [
+      ...navigation.map(item => ({
+        title: item.name,
+        href: item.href,
+        description: `Navigate to ${item.name} page`
+      })),
+      {
+        title: "Virtual Tour",
+        href: "/virtual-tour",
+        description: "Experience an immersive 3D tour of Rajpipla Palace"
+      },
+      {
+        title: "Digital Archive",
+        href: "/archive",
+        description: "Explore historical documents and photographs"
+      },
+      {
+        title: "Audio Tour",
+        href: "/audio-tour",
+        description: "Listen to guided audio tours in multiple languages"
+      }
+    ];
+
+    const results = searchableContent.filter(item =>
+      item.title.toLowerCase().includes(term.toLowerCase()) ||
+      (item.description?.toLowerCase().includes(term.toLowerCase()))
+    );
+
+    setSearchResults(results);
+  }, []);
+
+  useEffect(() => {
+    performSearch(searchTerm);
+  }, [searchTerm, performSearch]);
+
+  const handleCloseSearch = () => {
+    setSearchOpen(false);
+    setSearchTerm("");
+    setSearchResults([]);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-heritage-cream/95 backdrop-blur-md border-b border-heritage-stone/20">
@@ -45,21 +104,59 @@ export const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+<<<<<<< Updated upstream
             <ModeToggle />
+=======
+<<<<<<< HEAD
+            <Button variant="ghost" size="icon" onClick={() => setSearchOpen(!searchOpen)}>
+              <Search className="w-5 h-5" />
+            </Button>
+=======
+            <ModeToggle />
+>>>>>>> 23fa67fb67d6921e219fbae29704e34f4211cf5f
+>>>>>>> Stashed changes
           </div>
 
           {/* Mobile menu button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </Button>
+          <div className="flex items-center gap-2 md:hidden">
+            <Button variant="ghost" size="icon" onClick={() => setSearchOpen(!searchOpen)}>
+              <Search className="w-5 h-5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </Button>
+          </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Search Input */}
+{searchOpen && (
+  <div className="relative">
+    <div className="py-4 border-t border-heritage-stone/20">
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        performSearch(searchTerm);
+      }}>
+        <Input
+          type="search"
+          placeholder="Search..."
+          className="w-full"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') {
+              handleCloseSearch();
+            }
+          }}
+        />
+      </form>
+    </div>
+    <SearchResults results={searchResults} onClose={handleCloseSearch} />
+  </div>
+)}        {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-heritage-stone/20">
             <div className="flex flex-col gap-4">

@@ -12,7 +12,15 @@ import Visit from "./pages/Visit";
 import AIGuide from "./pages/AIGuide";
 import Emergency from "./pages/Emergency";
 import NotFound from "./pages/NotFound";
+<<<<<<< Updated upstream
 import { ThemeProvider } from "@/components/ui/theme-provider";
+=======
+<<<<<<< HEAD
+import { AIGuideButton } from "./components/AIGuideButton";
+=======
+import { ThemeProvider } from "@/components/ui/theme-provider";
+>>>>>>> 23fa67fb67d6921e219fbae29704e34f4211cf5f
+>>>>>>> Stashed changes
 
 const queryClient = new QueryClient();
 
@@ -21,6 +29,26 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+      <BrowserRouter>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/virtual-tour" element={<VirtualTour />} />
+          <Route path="/archive" element={<DigitalArchive />} />
+          <Route path="/audio-tour" element={<AudioTour />} />
+          <Route path="/visit" element={<Visit />} />
+          <Route path="/ai-guide" element={<AIGuide />} />
+          <Route path="/emergency" element={<Emergency />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <AIGuideButton />
+      </BrowserRouter>
+=======
+>>>>>>> Stashed changes
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <BrowserRouter>
           <Navigation />
@@ -37,6 +65,10 @@ const App = () => (
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
+<<<<<<< Updated upstream
+=======
+>>>>>>> 23fa67fb67d6921e219fbae29704e34f4211cf5f
+>>>>>>> Stashed changes
     </TooltipProvider>
   </QueryClientProvider>
 );

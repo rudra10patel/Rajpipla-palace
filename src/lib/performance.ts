@@ -80,7 +80,7 @@ export class BundleOptimizer {
   /**
    * Debounce function calls
    */
-  static debounce<T extends (...args: any[]) => any>(
+  static debounce<T extends (...args: unknown[]) => unknown>(
     func: T,
     wait: number
   ): (...args: Parameters<T>) => void {
@@ -94,7 +94,7 @@ export class BundleOptimizer {
   /**
    * Throttle function calls
    */
-  static throttle<T extends (...args: any[]) => any>(
+  static throttle<T extends (...args: unknown[]) => unknown>(
     func: T,
     limit: number
   ): (...args: Parameters<T>) => void {
@@ -152,6 +152,18 @@ export class MemoryManager {
 }
 
 // Performance monitoring
+interface WebVitals {
+  FCP: number;
+  LCP: number;
+  CLS: number;
+}
+
+interface MemoryInfo {
+  jsHeapSizeLimit: number;
+  totalJSHeapSize: number;
+  usedJSHeapSize: number;
+}
+
 export class PerformanceMonitor {
   private static metrics: Map<string, number> = new Map();
 
@@ -178,11 +190,11 @@ export class PerformanceMonitor {
   /**
    * Get Web Vitals metrics
    */
-  static getWebVitals(): Promise<any> {
+  static getWebVitals(): Promise<WebVitals> {
     return new Promise((resolve) => {
       if ('web-vitals' in window) {
         // This would require the web-vitals library
-        resolve({});
+        resolve({ FCP: 0, LCP: 0, CLS: 0 });
       } else {
         // Basic performance metrics
         const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
@@ -198,9 +210,9 @@ export class PerformanceMonitor {
   /**
    * Monitor memory usage
    */
-  static getMemoryUsage(): any {
+  static getMemoryUsage(): MemoryInfo | null {
     if ('memory' in performance) {
-      return (performance as any).memory;
+      return (performance as unknown as { memory: MemoryInfo }).memory;
     }
     return null;
   }

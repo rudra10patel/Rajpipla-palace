@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -50,7 +50,7 @@ export const AudioTour = () => {
   const currentAudioFile = LANGUAGE_CONFIG[selectedLanguage].audioFile;
 
   // Audio player functions
-  const handlePlayPause = () => {
+  const handlePlayPause = useCallback(() => {
     if (!currentAudioFile) return;
 
     if (isPlaying) {
@@ -120,7 +120,7 @@ export const AudioTour = () => {
       setIsPlaying(true);
       setIsPaused(false);
     }
-  };
+  }, [currentAudioFile, isPlaying, isPaused]);
 
   const handleStop = () => {
     if (audioRef.current) {
@@ -230,7 +230,7 @@ export const AudioTour = () => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isPlaying, isPaused]);
+  }, [isPlaying, isPaused, handlePlayPause]);
 
   // Cleanup audio on component unmount
   useEffect(() => {
