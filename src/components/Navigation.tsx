@@ -3,15 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Crown, Menu, X, Search } from "lucide-react";
 import { Input } from "./ui/input";
 import { Link, useLocation } from "react-router-dom";
-<<<<<<< Updated upstream
 import { ModeToggle } from "@/components/mode-toggle";
-=======
-<<<<<<< HEAD
 import { SearchResults, type SearchResult } from "./SearchResults";
-=======
-import { ModeToggle } from "@/components/mode-toggle";
->>>>>>> 23fa67fb67d6921e219fbae29704e34f4211cf5f
->>>>>>> Stashed changes
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -104,17 +97,10 @@ export const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-<<<<<<< Updated upstream
             <ModeToggle />
-=======
-<<<<<<< HEAD
             <Button variant="ghost" size="icon" onClick={() => setSearchOpen(!searchOpen)}>
               <Search className="w-5 h-5" />
             </Button>
-=======
-            <ModeToggle />
->>>>>>> 23fa67fb67d6921e219fbae29704e34f4211cf5f
->>>>>>> Stashed changes
           </div>
 
           {/* Mobile menu button */}
